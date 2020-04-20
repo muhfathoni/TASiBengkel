@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 
@@ -37,3 +37,24 @@ Route::get('/booking','Admin\DashboardController@booking');
     
 });
 
+Route::get('jenis', function(){
+	return view ('jenis');
+});
+
+Route::get('mitra', function(){
+	return view ('mitra');
+});
+
+Route::get('pembelianbarang', function(){
+	return view ('pembelianbarang');
+});
+
+Route::get('produk', 'produkController@index');
+
+Route::get('barangdibayar', function(){
+	return view ('barangdibayar');
+});
+
+Route::get('/logout', 'Auth\logoutController@logout');
+
+Route::get('/produk/{id}', 'produkController@show');
