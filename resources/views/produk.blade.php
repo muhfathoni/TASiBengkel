@@ -126,7 +126,7 @@
 						</div>
 
 						<div class="block2-txt p-t-20">
-							<a href="/produk/$prod->id" class="block2-name dis-block s-text3 p-b-5">
+							<a href="{{route('produkdetail', ['id'=>$prod->id])}}" class="block2-name dis-block s-text3 p-b-5">
 								{{$prod->nama}}
 							</a>
 

@@ -56,7 +56,7 @@ class produkController extends Controller
     {
         $produk = produk::where('id', $id)->get();
 
-        return view ('produk-detail')->with ("produk", $produk);
+        return view ('produkdetail')->with ("produk", $produk);
         // return $produk;
 
 

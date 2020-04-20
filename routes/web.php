@@ -57,4 +57,4 @@ Route::get('barangdibayar', function(){
 
 Route::get('/logout', 'Auth\logoutController@logout');
 
-Route::get('/produk/{id}', 'produkController@show');
+Route::get('/produk/{id}', 'produkController@show')->name('produkdetail');
