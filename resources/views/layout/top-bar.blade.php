@@ -36,7 +36,7 @@
                 @else
 
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#" style="color: #000000">Login</a>
+                <a class="nav-link js-scroll-trigger" href="/login" style="color: #000000">Login</a>
                 </li>
                 @endif
 

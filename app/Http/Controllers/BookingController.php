@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\booking;
 use Illuminate\Http\Request;
+use Auth;
 
 class BookingController extends Controller
 {
@@ -14,7 +15,13 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view ('booking');
+        $booking = Booking::where('userid',Auth::user()->id)->get();
+
+
+        $data['result'] = $booking ;
+
+        // dd($booking);
+        return view ('booking')->with ("booking", $booking);
     }
 
     /**
@@ -45,6 +52,7 @@ class BookingController extends Controller
 
         $booking = new Booking();
 
+        $booking->userid = Auth::user()->id;
         $booking->nama = $request->namaBengkel;
         $booking->jenis_service = $request->namaService;
         $booking->jadwal = $request->jadwalService;
