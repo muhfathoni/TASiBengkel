@@ -14,7 +14,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        return view ('booking');
     }
 
     /**
@@ -24,7 +24,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +35,24 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+          $this->validate($request, [
+            'namaBengkel'          => 'required',
+            'namaService'          => 'required',
+            'jadwalService'        => 'required', 
+            'jamService'           => 'required'
+        ]);
+
+        $booking = new Booking();
+
+        $booking->nama = $request->namaBengkel;
+        $booking->jenis_service = $request->namaService;
+        $booking->jadwal = $request->jadwalService;
+        $booking->jam = $request->jamService;
+
+        $booking->save();
+
+        return redirect()->route('booking')->with('success', 'Booking berhasil');
     }
 
     /**

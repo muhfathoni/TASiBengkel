@@ -9,6 +9,6 @@ class Booking extends Model
     protected $table = "tb_booking";
 
     protected $fillable = [
-        'nama', 'jenis_service', 'jadwal',
+        'nama', 'jenis_service', 'jadwal', 'jam'
     ];
 }

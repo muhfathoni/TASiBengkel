@@ -58,3 +58,10 @@ Route::get('barangdibayar', function(){
 Route::get('/logout', 'Auth\logoutController@logout');
 
 Route::get('/produk/{id}', 'produkController@show')->name('produkdetail');
+
+// Route::get('booking', function(){
+// 	return view ('booking');
+// });
+
+Route::get('booking', 'BookingController@index')->name('booking');
+Route::post('/booking/insert', 'BookingController@store');

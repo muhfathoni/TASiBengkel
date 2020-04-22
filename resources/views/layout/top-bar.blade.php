@@ -22,7 +22,7 @@
                     <a class="nav-link js-scroll-trigger" href='/produk' style="color: #000000">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <!-- <a class="nav-link js-scroll-trigger" href='countdown.php'>Booking Service</a> -->
+                    <a class="nav-link js-scroll-trigger" href='/booking' style="color: #000000">Booking Service</a>
                 </li>
 
                 @if (Auth::check())
