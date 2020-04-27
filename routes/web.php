@@ -65,3 +65,5 @@ Route::get('/produk/{id}', 'produkController@show')->name('produkdetail');
 
 Route::get('booking', 'BookingController@index')->name('booking');
 Route::post('/booking/insert', 'BookingController@store');
+
+Route::get('cart/{id}', 'produkController@addtocart');

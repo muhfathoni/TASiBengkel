@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\produk;
+use App\addtocart;
+use Auth;
+use Illuminate\Database\QueryException; 
 
 class produkController extends Controller
 {
@@ -97,4 +100,24 @@ class produkController extends Controller
     {
         //
     }
+
+    public function addtocart($id){
+
+        $addtocart = new addtocart();
+
+        $addtocart->user_id = Auth::user()->id;
+        $addtocart->produk_id = $id;
+        
+
+        try {
+
+           $addtocart->save();
+
+       } catch (QueryException $e) {
+            return 'sudah ada';
+       }
+       
+
+       return 'berhasil';
+   }
 }
