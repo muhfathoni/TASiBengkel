@@ -116,9 +116,9 @@
 									<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
 								</a>
 
-								<div class="block2-btn-addcart w-size1 trans-0-4">
+								<div class="block2-btn-addcart w-size1 trans-0-4 " id="{{$prod->id}}">
 									<!-- Button -->
-									<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 addToCart" id="{{$prod->id}}">
+									<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 addToCart" ">
 										Add to Cart
 									</button>
 								</div>
@@ -148,19 +148,42 @@
 
 @push('script')
 
-	<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
-	<script type="text/javascript">
-		$('.block2-btn-addcart').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-	</script>
-
-
-
+<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
+	$('.block2-btn-addcart').each(function(){
+		var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+		$(this).on('click', function(){
+
+			let id = $(this).attr('id');
+			$.get('cart/'+id, function(response){
+				if(response==1){
+					swal(nameProduct, "is added to cart !", "success");
+				}
+				else if (response==0)
+				{
+					swal(nameProduct, "already in cart !", "error");
+				}
+				else if (response==2){
+					// swal("Login to continue!", "error");
+
+					swal("Login to continue")
+					.then((value) => {
+						// swal(`The returned value is: ${value}`);
+						if (value != null && value){
+							window.location.href='/login'
+						}
+					});
+				}
+			});
+			
+			
+		});
+	});
+</script>
+
+
+
+<!-- <script type="text/javascript">
 	$(document).ready(function(){
 		// alert('test')
 		$(".addToCart").on('click',function(){
@@ -171,6 +194,6 @@
 			});
 		});
 	})
-</script>
+</script> -->
 
 @endpush

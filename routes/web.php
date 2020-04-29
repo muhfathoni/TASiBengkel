@@ -63,7 +63,7 @@ Route::get('/produk/{id}', 'produkController@show')->name('produkdetail');
 // 	return view ('booking');
 // });
 
-Route::get('booking', 'BookingController@index')->name('booking');
+Route::get('booking', 'BookingController@index')->name('booking')->middleware('checkbooking');
 Route::post('/booking/insert', 'BookingController@store');
 
 Route::get('cart/{id}', 'produkController@addtocart');

@@ -17,7 +17,6 @@ class BookingController extends Controller
     {
         $booking = Booking::where('userid',Auth::user()->id)->get();
 
-
         $data['result'] = $booking ;
 
         // dd($booking);

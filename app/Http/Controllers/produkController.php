@@ -103,21 +103,33 @@ class produkController extends Controller
 
     public function addtocart($id){
 
-        $addtocart = new addtocart();
+        // $id = Auth::user()->id;
 
-        $addtocart->user_id = Auth::user()->id;
-        $addtocart->produk_id = $id;
-        
+        // dd($id);
 
-        try {
+        if(Auth::check()){
 
-           $addtocart->save();
+           $addtocart = new addtocart();
 
-       } catch (QueryException $e) {
-            return 'sudah ada';
-       }
-       
+           $addtocart->user_id = Auth::user()->id;
+           $addtocart->produk_id = $id;
 
-       return 'berhasil';
-   }
+           try {
+
+             $addtocart->save();
+
+         } catch (QueryException $e) {
+            return 0;
+        }
+
+
+        return 1;
+
+    }
+
+    else {
+        return 2;
+    }
+
+}
 }
