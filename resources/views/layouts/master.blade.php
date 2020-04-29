@@ -69,7 +69,7 @@
         </li> --}}
           <li> 
             <li class="active ">
-            <a href="/booking">
+            <a href="/bookingadmin">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p class="text-dark">Booking List</p>
             </a>
