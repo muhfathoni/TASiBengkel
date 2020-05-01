@@ -17,4 +17,9 @@ class DashboardController extends Controller
         $booking = Booking::all();
         return view('admin.booking')->with('tb_booking',$booking);
     }
+    public function chart($year=null, $month=null)
+    {
+        return  $month."-".$year;
+        // return view('admin.chart')->with('tb_booking',$chart);   
+    }
 }
