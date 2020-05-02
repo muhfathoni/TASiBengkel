@@ -33,20 +33,12 @@ Route::group(['middleware' => ['auth','admin']], function (){
 
     Route::get('/dashboard', 'Admin\DashboardController@index');
     
-<<<<<<< HEAD
     Route::get('/bookingadmin','Admin\DashboardController@booking');
     
     Route::get('/dashboard/chart/{year?}','Admin\DashboardController@chart');
 
 });
 
-=======
-Route::get('/dashboard/chart/{year?}/{month?}','Admin\DashboardController@chart');
-
-});
-
-
->>>>>>> 2d99294c8b87c0568d038aec267472e1d2ef1592
 //punya toni sampe sini
 
 Route::get('jenis', function(){
