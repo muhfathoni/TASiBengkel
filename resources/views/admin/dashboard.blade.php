@@ -94,6 +94,7 @@
                     </tbody> --}}
                   </table>
                 </div>
+                <div id="chart_div" style="width:100%;height:400px;"></div>
               </div>
             </div>
           </div>
@@ -116,15 +117,25 @@
             </div>
           </div>
         </div>
+        
+        <!--Div that will hold the dashboard-->
+    {{-- <div id="dashboard_div">
+      <!--Divs that will hold each control and chart-->
+      <div id="filter_div"></div>
+      <div id="chart_div"></div>
+    </div> --}}
 
 @endsection
 
 
 @section('scripts')
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
+
 
       function drawChart(year) {
         var url_ajax = (year != null) ? '/dashboard/chart/'+year : '/dashboard/chart';
@@ -164,5 +175,7 @@
         });
       });
     </script>
+
+
 @endsection
 

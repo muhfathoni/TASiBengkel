@@ -55,6 +55,7 @@ class DashboardController extends Controller
         return view('admin.booking')->with('tb_booking',$booking);
     }
 
+
     public function chart($year=null)
     {
         $data = [];
@@ -91,3 +92,4 @@ class DashboardController extends Controller
         return $data;
     }
 }
+
