@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//punya toni
+
 Route::get('/', function () {
     return view('home');
 });
@@ -29,13 +31,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth','admin']], function (){
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    });
-
-Route::get('/bookingadmin','Admin\DashboardController@booking');
+    Route::get('/dashboard', 'Admin\DashboardController@index');
     
+    Route::get('/bookingadmin','Admin\DashboardController@booking');
+    
+    Route::get('/dashboard/chart/{year?}','Admin\DashboardController@chart');
+
 });
+
+//punya toni sampe sini
 
 Route::get('jenis', function(){
 	return view ('jenis');
@@ -67,3 +71,5 @@ Route::get('booking', 'BookingController@index')->name('booking')->middleware('c
 Route::post('/booking/insert', 'BookingController@store');
 
 Route::get('cart/{id}', 'produkController@addtocart');
+
+
