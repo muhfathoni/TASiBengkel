@@ -35,13 +35,13 @@
                     <tbody>
                       <tr>
                         <td>
-                          VSD
+                          {{\Auth::user()->name}}
                         </td>
                         <td>
-                          0001
+                          {{\Auth::user()->id}}
                         </td>
                         <td>
-                          17 April 2020
+                          {{\Carbon\Carbon::parse(\Auth::user()->created_at)->format('d F Y')}}
                         </td>
                         <td>
                           Cikoneng, Bojongsoang
@@ -53,46 +53,27 @@
               </div>
             </div>
           </div>
+         {{-- @if (\Auth::user()->usertype == 'superadmin') 
+          <div class="col-md-12 mb-3">
+            <div class="card">
+              testestes
+            </div>
+          </div>
+          @endif --}}
+          
           <div class="col-md-12">
-            <div class="card card-plain">
-              <div class="card-header">
-                <h4 class="card-title"> VSD</h4>
-                <p class="category"> Mitra SiBengkel</p>
+            <div class="card-deck mb-3">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5>Jumlah Customer</h5>
+                  <h5 class="font-weight-bold">{{$cust}}</h5>
+                </div>
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                      {{-- <th>
-                        Nama Item
-                      </th>
-                      <th>
-                        No Seri
-                      </th>
-                      <th>
-                        Jumlah
-                      </th>
-                      <th>
-                        Tanggal Pengambilan
-                      </th> --}}
-                    {{-- </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          Knalpot
-                        </td>
-                        <td>
-                          001
-                        </td>
-                        <td>
-                          1
-                        </td>
-                        <td>
-                          10 Maret 2020
-                        </td>
-                      </tr>
-                    </tbody> --}}
-                  </table>
+
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5>Total Booking</h5>
+                  <h5 class="font-weight-bold">{{$booking}}</h5>
                 </div>
               </div>
             </div>
@@ -143,6 +124,8 @@
               var data = google.visualization.arrayToDataTable(response);
 
               var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+              // var options = {}
 
               chart.draw(data);
             } else {

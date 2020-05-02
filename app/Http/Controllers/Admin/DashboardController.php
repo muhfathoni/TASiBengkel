@@ -23,11 +23,16 @@ class DashboardController extends Controller
         return $bulan;
     }
 
-    public function daftarTahun()
+    public function daftarTahun($isAdmin = false)
     {
         $tahun = [];
-
-        $booking__paling_awal = Booking::where('nama',Auth::user()->name)->orderBy('jadwal')->pluck('jadwal');
+        
+        if ($isAdmin) {
+            $booking__paling_awal = Booking::where('nama',Auth::user()->name)->orderBy('jadwal')->pluck('jadwal');
+        } else {
+            $booking__paling_awal = Booking::orderBy('jadwal')->pluck('jadwal');
+        }
+        
         $awal = Carbon::parse($booking__paling_awal->first())->format('Y');
         $akhir = Carbon::parse($booking__paling_awal->last())->format('Y');
 
@@ -40,9 +45,20 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $tahunArray = $this->daftarTahun();
+        if (Auth::user()->usertype == 'admin') {
+            $tahunArray = $this->daftarTahun(true);
+            $jumlah_customer = Booking::where('nama',Auth::user()->name)->distinct('userid')->count();
+            $total_booking = Booking::where('nama',Auth::user()->name)->count();
+        } else {
+            $tahunArray = $this->daftarTahun();
+            $jumlah_customer = Booking::distinct('userid')->count();
+            $total_booking = Booking::count();
+
+        }
         
-        return view('admin.dashboard')->with('tahun',$tahunArray);
+       
+        
+        return view('admin.dashboard')->with('tahun',$tahunArray)->with('cust',$jumlah_customer)->with('booking',$total_booking);
     }
 
 
@@ -50,8 +66,12 @@ class DashboardController extends Controller
     {
         // $users = User::all();
         // return view('admin.booking')->with('users',$users);
+        if (Auth::user()->usertype == 'admin') {
+            $booking = Booking::where('nama',Auth::user()->name)->get();
+        } else {
+            $booking = Booking::all();
 
-        $booking = Booking::all();
+        }
         return view('admin.booking')->with('tb_booking',$booking);
     }
 
@@ -62,12 +82,23 @@ class DashboardController extends Controller
 
         if ($year == null) {
             $data[0] = ['Semua','Booking'];
-            $daftar_tahun = $this->daftarTahun();
 
-            $booking_per_tahun = Booking::where('nama',Auth::user()->name)->orderBy('jadwal')->get()
+            if (Auth::user()->usertype == 'admin') {
+                $daftar_tahun = $this->daftarTahun(true);
+
+                $booking_per_tahun = Booking::where('nama',Auth::user()->name)->orderBy('jadwal')->get()
+                                        ->groupBy(function($booking_item){
+                                            return Carbon::parse($booking_item->jadwal)->format('Y');
+                                        })->toArray();
+            } else {
+                $daftar_tahun = $this->daftarTahun();
+
+            $booking_per_tahun = Booking::orderBy('jadwal')->get()
                                     ->groupBy(function($booking_item){
                                         return Carbon::parse($booking_item->jadwal)->format('Y');
                                     })->toArray();
+            }
+           
             
             foreach ($daftar_tahun as $key => $tahun) {
                 $data[$index++] = [ $tahun, (array_key_exists($tahun,$booking_per_tahun)) ? sizeof($booking_per_tahun[$tahun]) : 0 ];
@@ -77,10 +108,19 @@ class DashboardController extends Controller
             $data[0] = [$year,'Booking'];
             $daftar_bulan = $this->daftarBulan();
 
-            $booking_per_bulan = Booking::where('nama',Auth::user()->name)->whereYear('jadwal',$year)->orderBy('jadwal')->get()
+            if(Auth::user()->usertype == 'admin'){
+                $booking_per_bulan = Booking::where('nama',Auth::user()->name)->whereYear('jadwal',$year)->orderBy('jadwal')->get()
                                     ->groupBy(function($booking_item){
                                         return Carbon::parse($booking_item->jadwal)->format('F');
                                     })->toArray();
+            }
+            else{
+                $booking_per_bulan = Booking::whereYear('jadwal',$year)->orderBy('jadwal')->get()
+                ->groupBy(function($booking_item){
+                    return Carbon::parse($booking_item->jadwal)->format('F');
+                })->toArray();
+            }
+            
             
             foreach ($daftar_bulan as $key => $bulan) {
                 $data[$index++] = [ $bulan, (array_key_exists($bulan,$booking_per_bulan)) ? sizeof($booking_per_bulan[$bulan]) : 0];
