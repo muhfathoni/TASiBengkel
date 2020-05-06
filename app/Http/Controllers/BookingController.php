@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\booking;
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
+use App\servis;
 
 class BookingController extends Controller
 {
@@ -15,12 +17,13 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $booking = Booking::where('userid',Auth::user()->id)->get();
+        $booking = Booking::with()where('userid',Auth::user()->id)->get();
+        $bengkels = User::where('usertype', 'admin')->get();
 
         $data['result'] = $booking ;
 
         // dd($booking);
-        return view ('booking')->with ("booking", $booking);
+        return view ('booking')->with ("booking", $booking)->with ('bengkels', $bengkels);
     }
 
     /**
@@ -30,7 +33,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -42,25 +45,27 @@ class BookingController extends Controller
     public function store(Request $request)
     {
 
-          $this->validate($request, [
-            'namaBengkel'          => 'required',
-            'namaService'          => 'required',
-            'jadwalService'        => 'required', 
-            'jamService'           => 'required'
-        ]);
+        // dd($request->toArray());
 
-        $booking = new Booking();
+    //   $this->validate($request, [
+    //     'id_bengkel'           => 'required',
+    //     'namaService'          => 'required',
+    //     'jadwalService'        => 'required', 
+    //     'jamService'           => 'required'
+    // ]);
 
-        $booking->userid = Auth::user()->id;
-        $booking->nama = $request->namaBengkel;
-        $booking->jenis_service = $request->namaService;
-        $booking->jadwal = $request->jadwalService;
-        $booking->jam = $request->jamService;
+      $booking = new Booking();
 
-        $booking->save();
+      $booking->userid = Auth::user()->id;
+      $booking->id_bengkel = $request->bengkel;
+      $booking->jenis_service = $request->namaService;
+      $booking->jadwal = $request->jadwalService;
+      $booking->jam = $request->jamService;
 
-        return redirect()->route('booking')->with('success', 'Booking berhasil');
-    }
+      $booking->save();
+
+      return redirect()->route('booking')->with('success', 'Booking berhasil');
+  }
 
     /**
      * Display the specified resource.
@@ -105,5 +110,17 @@ class BookingController extends Controller
     public function destroy(booking $booking)
     {
         //
+    }
+
+    public function namaservis($id){
+        $servis = servis::where('id_bengkel', $id)->get();
+
+        $html = '';
+
+        foreach ($servis as $row){
+            $html .='<option value="'.$row->id.'">'.$row->nama_servis. '</option>';
+        }
+
+        return $html;
     }
 }

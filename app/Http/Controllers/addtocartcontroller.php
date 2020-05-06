@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\addtocart;
+use Auth;
 
 class addtocartcontroller extends Controller
 {
@@ -14,7 +15,15 @@ class addtocartcontroller extends Controller
      */
     public function index()
     {
-        //
+        //eager loading
+        $carts = addtocart::with('user', 'produk')->where('user_id',Auth::user()->id)->get();
+
+
+        //membuat api
+        // $data['title'] = 'API cart';
+        // $data['result'] = $cart;
+
+        return view ('cart')->with ("carts", $carts);
     }
 
     /**
