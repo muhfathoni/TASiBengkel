@@ -10,4 +10,8 @@ class produk extends Model
     protected $fillable = ['jenis_id', 'nama', 'deskrip', 'stock', 'harga', '01_gambar_a', 'gambar_b', '01_gambar_c'];
 
     public $timestamps = 'false';
+
+    public function produk(){
+    	return $this->hasMany('App\addtocart', 'produk_id');
+    }
 }

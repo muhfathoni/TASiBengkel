@@ -48,10 +48,10 @@
 			
 			<tr>
 				<td>
-					{{$booking->jenis_service}}
+					{{$booking->namaservis->nama_servis}}
 				</td>
 				<td>
-					{{$booking->nama}}
+					{{$booking->namabengkel->name}}
 				</td>
 				<td>
 					{{$booking->jadwal}}
@@ -85,7 +85,12 @@
 					:
 				</td>
 				<td>
-					<input type="text" placeholder="Nama Bengkel" name="namaBengkel" style="width: 100pt">
+					<select id="bengkel" name="bengkel">
+						<option value=''>Pilih bengkel</option>
+						@foreach($bengkels as $bengkel)
+						<option value="{{$bengkel->id}}">{{$bengkel->name}}</option>
+						@endforeach
+					</select>
 				</td>
 			</tr>
 			<tr>
@@ -98,9 +103,7 @@
 				<td>
 					<!-- <input type="text" placeholder="   Nama Service" name="namaService"> -->
 					<select id="namaService" name="namaService">
-						<option value="Ganti Oli">Ganti Oli</option>
-						<option value="Servis Rutin">Servis Rutin</option>
-						<option value="Servis Lainnya">Servis Lainnya</option>
+						<option value="Ganti Oli">Nama Servis</option>
 					</select>
 				</td>
 				<tr>
@@ -150,3 +153,20 @@
 <link href="{{ asset ('css/creative.min.css') }}" rel="stylesheet">
 
 @endsection
+
+@push('script')
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#bengkel').on('click', function(){
+			let id = $(this).val()
+
+			if (id!=''){
+				$.get('optionbooking/'+id, function(response){
+					$('#namaService').html(response)
+				})
+			}
+		})
+	})
+</script>
+
+@endpush

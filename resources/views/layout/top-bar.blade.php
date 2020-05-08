@@ -40,6 +40,8 @@
                 </li>
                 @endif
 
+                <img src="{{ asset ('img/cart.png') }}" class="header-icon1 js-show-header-dropdown" alt="ICON">
+
                 
             </ul>
         </div>

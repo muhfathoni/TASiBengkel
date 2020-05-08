@@ -28,7 +28,7 @@ class DashboardController extends Controller
         $tahun = [];
         
         if ($isAdmin) {
-            $booking__paling_awal = Booking::where('nama',Auth::user()->name)->orderBy('jadwal')->pluck('jadwal');
+            $booking__paling_awal = Booking::where('id_bengkel',Auth::user()->id)->orderBy('jadwal')->pluck('jadwal');
         } else {
             $booking__paling_awal = Booking::orderBy('jadwal')->pluck('jadwal');
         }
@@ -47,8 +47,8 @@ class DashboardController extends Controller
     {
         if (Auth::user()->usertype == 'admin') {
             $tahunArray = $this->daftarTahun(true);
-            $jumlah_customer = Booking::where('nama',Auth::user()->name)->distinct('userid')->count();
-            $total_booking = Booking::where('nama',Auth::user()->name)->count();
+            $jumlah_customer = Booking::where('id_bengkel',Auth::user()->id)->distinct('userid')->count();
+            $total_booking = Booking::where('id_bengkel',Auth::user()->id)->count();
         } else {
             $tahunArray = $this->daftarTahun();
             $jumlah_customer = Booking::distinct('userid')->count();
@@ -67,7 +67,7 @@ class DashboardController extends Controller
         // $users = User::all();
         // return view('admin.booking')->with('users',$users);
         if (Auth::user()->usertype == 'admin') {
-            $booking = Booking::where('nama',Auth::user()->name)->get();
+            $booking = Booking::with('namaservis', 'namabengkel')->where('id_bengkel',Auth::user()->id)->get();
         } else {
             $booking = Booking::all();
 
@@ -86,7 +86,7 @@ class DashboardController extends Controller
             if (Auth::user()->usertype == 'admin') {
                 $daftar_tahun = $this->daftarTahun(true);
 
-                $booking_per_tahun = Booking::where('nama',Auth::user()->name)->orderBy('jadwal')->get()
+                $booking_per_tahun = Booking::where('id_bengkel',Auth::user()->id)->orderBy('jadwal')->get()
                                         ->groupBy(function($booking_item){
                                             return Carbon::parse($booking_item->jadwal)->format('Y');
                                         })->toArray();
@@ -109,7 +109,7 @@ class DashboardController extends Controller
             $daftar_bulan = $this->daftarBulan();
 
             if(Auth::user()->usertype == 'admin'){
-                $booking_per_bulan = Booking::where('nama',Auth::user()->name)->whereYear('jadwal',$year)->orderBy('jadwal')->get()
+                $booking_per_bulan = Booking::where('id_bengkel',Auth::user()->id)->whereYear('jadwal',$year)->orderBy('jadwal')->get()
                                     ->groupBy(function($booking_item){
                                         return Carbon::parse($booking_item->jadwal)->format('F');
                                     })->toArray();
