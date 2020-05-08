@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth','admin']], function (){
     
     Route::get('/dashboard/chart/{year?}','Admin\DashboardController@chart');
 
+    Route::get('/revenue', 'Admin\DashboardController@revenue');
+
 });
 
 //punya toni sampe sini

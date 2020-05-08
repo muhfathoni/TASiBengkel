@@ -130,4 +130,39 @@ class DashboardController extends Controller
 
         return $data;
     }
+
+    // public function revenue()
+    // {
+    //     $currentmonth = date('m');
+    //     $total_rev = 0;
+    //     $revenue = Transaction::select('amount')->whereRAW('YEAR(created_at) = ?', Carbon::now()->startOfYear()->format('Y'))->get();
+    //     foreach ($revenue as $in)
+    //         $total_rev += $in->amount;
+    //     //
+    //     $revenue_last = Transaction::whereRaw('MONTH(created_at) = ?', Carbon::now()->subMonth()->format('m'))
+    //         ->whereRAW('YEAR(created_at) = ?', Carbon::now()->startOfYear()->format('Y'))->get();
+    //     $last_rev = 0;
+    //     foreach ($revenue_last as $in)
+    //         $last_rev += $in->amount;
+
+    //     $revenue = Transaction::whereRaw('MONTH(created_at) = ?', Carbon::now()->startOfMonth()->format('m'))
+    //         ->whereRAW('YEAR(created_at) = ?', Carbon::now()->startOfYear()->format('Y'))->get();
+    //     $current_rev = 0;
+    //     foreach ($revenue as $in)
+    //         $current_rev += $in->amount;
+
+    //     $change_rev = $current_rev - $last_rev;
+    //     $divide_rev = $change_rev / $last_rev;
+    //     $percentage_rev = $divide_rev * 100;
+
+    //     //Total Transaction Current Year
+    //     $year_transaction = Transaction::whereRAW('YEAR(created_at) = ?', Carbon::now()->startOfYear()->format('Y'))->count();
+
+    //     //Total Transaction Current Month
+    //     $month_transaction = Transaction::whereRaw('MONTH(created_at) = ?', Carbon::now()->startOfMonth()->format('m'))
+    //         ->whereRAW('YEAR(created_at) = ?', Carbon::now()->startOfYear()->format('Y'))->count();
+    //     $last_month_transaction = Transaction::whereRaw('MONTH(created_at) = ?', Carbon::now()->subMonth()->format('m'))
+    //         ->whereRAW('YEAR(created_at) = ?', Carbon::now()->startOfYear()->format('Y'))->count();
+
+    // }
 }

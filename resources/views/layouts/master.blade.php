@@ -61,14 +61,16 @@
             </a>
           </li> --}}
         </li>
-        {{-- <li class="active ">
-          <a href="/dashboard">
+        <li class="revenue ">
+          <a href="/revenue">
             <i class="now-ui-icons users_single-02"></i>
-            <p class="text-dark">profile</p>
+            <p class="text-dark">Revenue</p>
           </a>
-        </li> --}}
+        </li>
+
           <li> 
-            <li class="active ">
+            <li class="booking">
+            {{-- <li class="active"> --}}
             <a href="/bookingadmin">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p class="text-dark">Booking List</p>
