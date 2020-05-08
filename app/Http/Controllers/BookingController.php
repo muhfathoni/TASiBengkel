@@ -17,7 +17,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $booking = Booking::with()where('userid',Auth::user()->id)->get();
+        $booking = Booking::where('userid',Auth::user()->id)->get();
         $bengkels = User::where('usertype', 'admin')->get();
 
         $data['result'] = $booking ;
