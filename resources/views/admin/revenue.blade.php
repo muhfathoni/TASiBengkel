@@ -65,15 +65,8 @@
             <div class="card-deck mb-3">
               <div class="card">
                 <div class="card-body text-center">
-                  <h5>Jumlah Customer</h5>
-                  <h5 class="font-weight-bold">{{$cust}}</h5>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-body text-center">
-                  <h5>Total Booking</h5>
-                  <h5 class="font-weight-bold">{{$booking}}</h5>
+                  <h5>Total Pendapatan</h5>
+                  <h5 class="font-weight-bold">Rp{{number_format($total_pendapatan,2,',','.')}}</h5>
                 </div>
               </div>
             </div>
@@ -81,7 +74,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Daftar Booking </h4>
+                <h4 class="card-title"> Pendapatan </h4>
               </div>
               <div class="card-body">
                 <div class="form-group mb-5">
@@ -115,7 +108,7 @@
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart(year) {
-        var url_ajax = (year != null) ? '/dashboard/chart/'+year : '/dashboard/chart';
+        var url_ajax = (year != null) ? '/revenue/chart/'+year : '/revenue/chart';
         $.ajax({
           url: url_ajax,
           type: 'GET',

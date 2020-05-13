@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -63,7 +64,7 @@
         </li>
         <li class="revenue ">
           <a href="/revenue">
-            <i class="now-ui-icons users_single-02"></i>
+            <i class="now-ui-icons business_money-coins"></i>
             <p class="text-dark">Revenue</p>
           </a>
         </li>
@@ -75,6 +76,16 @@
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p class="text-dark">Booking List</p>
             </a>
+          </li>
+
+          @if (\Auth::user()->usertype == 'superadmin')
+            <li class="inputitem ">
+              <a href="/inputitem">
+                <i class="now-ui-icons shopping_tag-content"></i>
+                <p class="text-dark">Input Item</p>
+              </a>
+            </li>
+          @endif
           
           {{-- <li>
             <a href="./typography.html">
@@ -84,7 +95,7 @@
           </li> --}}
           <li class="contact">
             <a href="www.gmail.com">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+              <i class="now-ui-icons tech_mobile"></i>
               <p class="text-dark">Contact Us</p>
             </a>
           </li>

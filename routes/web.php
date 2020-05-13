@@ -37,8 +37,15 @@ Route::group(['middleware' => ['auth','admin']], function (){
     
     Route::get('/dashboard/chart/{year?}','Admin\DashboardController@chart');
 
+    Route::post('/revenue','Admin\DashboardController@income');
+
     Route::get('/revenue', 'Admin\DashboardController@revenue');
 
+    Route::get('/revenue/chart/{year?}', 'Admin\DashboardController@chartrevenue');
+
+    Route::get('/inputitem' , 'Admin\DashboardController@inputitem');
+
+    Route::post('/inputitem' , 'Admin\DashboardController@tambahitem');
 });
 
 //punya toni sampe sini
