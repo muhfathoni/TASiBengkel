@@ -25,7 +25,7 @@
 <body class="">
   <div class="wrapper ">
 
-    <div class="sidebar" data-color="green"> <!--Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"-->
+    <div class="sidebar" data-color="blue"> <!--Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"-->
       <div class="logo">
         <a href="http://www.sibengkel.com" class="simple-text logo-mini">
           <img src="{{asset('img/logo.png')}}">
@@ -34,13 +34,13 @@
           SiBengkel
         </a>
       </div>
-      <div class="sidebar-wrapper text-dark" id="sidebar-wrapper">
+      <div class="sidebar-wrapper text-light" id="sidebar-wrapper">
         <ul class="nav">
           <li>
             <a href="/dashboard">
               <i class="now-ui-icons design_app"></i>
            
-              <p class="text-dark">Home</p>
+              <p class="text-light">Home</p>
             </a>
           </li>
           {{-- <li>
@@ -65,7 +65,7 @@
         <li class="revenue ">
           <a href="/revenue">
             <i class="now-ui-icons business_money-coins"></i>
-            <p class="text-dark">Revenue</p>
+            <p class="text-light">Revenue</p>
           </a>
         </li>
 
@@ -74,7 +74,7 @@
             {{-- <li class="active"> --}}
             <a href="/bookingadmin">
               <i class="now-ui-icons design_bullet-list-67"></i>
-              <p class="text-dark">Booking List</p>
+              <p class="text-light">Booking List</p>
             </a>
           </li>
 
@@ -82,7 +82,7 @@
             <li class="inputitem ">
               <a href="/inputitem">
                 <i class="now-ui-icons shopping_tag-content"></i>
-                <p class="text-dark">Input Item</p>
+                <p class="text-light">Input Item</p>
               </a>
             </li>
           @endif
@@ -96,7 +96,7 @@
           <li class="contact">
             <a href="www.gmail.com">
               <i class="now-ui-icons tech_mobile"></i>
-              <p class="text-dark">Contact Us</p>
+              <p class="text-light">Contact Us</p>
             </a>
           </li>
         </ul>
@@ -114,7 +114,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Table List</a>
+            {{-- <a class="navbar-brand" href="#pablo">Table List</a> --}}
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
