@@ -23,7 +23,7 @@ Daftar Booking | Mitra SiBengkel
               <th>Nama</th>
               <th>Jenis Service</th>
               <th>Jadwal Booking</th>
-              <th>Action</th>
+              <th>Income</th>
             </thead>
             <tbody>
               @foreach ($tb_booking as $row)
@@ -35,7 +35,19 @@ Daftar Booking | Mitra SiBengkel
                 <td>{{ $row->namaservis->nama_servis }} </td>
                 <td>{{ $row->jadwal }}</td>
                 <td>
-                  <a href="#" class="btn btn-danger">DELETE</a>
+                  @if ($row->revenue > 0)
+                      Rp{{number_format($row->revenue,2,',','.')}}
+                  @else
+                  <div class="input-group mb-3">
+                    <input type="number" class="form-control" placeholder="Contoh: 100000" aria-label="Income" aria-describedby="basic-addon2" id="{{ 'revenue'.$row->id }}">
+                    <div class="input-group-append">
+                      <button class="btn primary revenue-enter" id="{{ $row->id }}" type="button">Enter </button>
+                    </div>
+                  </div>
+                  @endif
+                 
+                  {{-- <input type="text" name="income" class="form-control">
+                  <a href="#" class="btn btn-success">Add</a> --}}
                 </td>
               </tr>
 
@@ -96,6 +108,30 @@ Daftar Booking | Mitra SiBengkel
 
 
 @section('scripts')
+
+<script type="text/javascript"> 
+
+  $(document).ready(function(){
+    $('.revenue-enter').on('click',function(){
+
+      var id_booking = $(this).attr('id');
+      $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+
+        }   
+      })
+      var revenue = $('#revenue'+id_booking).val();
+      $.post( "/revenue", { id_booking: id_booking, revenue: revenue })
+      .done(function( data ) {
+        alert( "Revenue Added" );
+      });
+    });
+
+  
+});
+
+</script>
 
 @endsection
 

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -24,7 +25,7 @@
 <body class="">
   <div class="wrapper ">
 
-    <div class="sidebar" data-color="green"> <!--Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"-->
+    <div class="sidebar" data-color="blue"> <!--Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"-->
       <div class="logo">
         <a href="http://www.sibengkel.com" class="simple-text logo-mini">
           <img src="{{asset('img/logo.png')}}">
@@ -33,13 +34,13 @@
           SiBengkel
         </a>
       </div>
-      <div class="sidebar-wrapper text-dark" id="sidebar-wrapper">
+      <div class="sidebar-wrapper text-light" id="sidebar-wrapper">
         <ul class="nav">
           <li>
             <a href="/dashboard">
               <i class="now-ui-icons design_app"></i>
            
-              <p class="text-dark">Home</p>
+              <p class="text-light">Home</p>
             </a>
           </li>
           {{-- <li>
@@ -61,18 +62,30 @@
             </a>
           </li> --}}
         </li>
-        {{-- <li class="active ">
-          <a href="/dashboard">
-            <i class="now-ui-icons users_single-02"></i>
-            <p class="text-dark">profile</p>
+        <li class="revenue ">
+          <a href="/revenue">
+            <i class="now-ui-icons business_money-coins"></i>
+            <p class="text-light">Revenue</p>
           </a>
-        </li> --}}
+        </li>
+
           <li> 
-            <li class="active ">
+            <li class="booking">
+            {{-- <li class="active"> --}}
             <a href="/bookingadmin">
               <i class="now-ui-icons design_bullet-list-67"></i>
-              <p class="text-dark">Booking List</p>
+              <p class="text-light">Booking List</p>
             </a>
+          </li>
+
+          @if (\Auth::user()->usertype == 'superadmin')
+            <li class="inputitem ">
+              <a href="/inputitem">
+                <i class="now-ui-icons shopping_tag-content"></i>
+                <p class="text-light">Input Item</p>
+              </a>
+            </li>
+          @endif
           
           {{-- <li>
             <a href="./typography.html">
@@ -82,8 +95,8 @@
           </li> --}}
           <li class="contact">
             <a href="www.gmail.com">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p class="text-dark">Contact Us</p>
+              <i class="now-ui-icons tech_mobile"></i>
+              <p class="text-light">Contact Us</p>
             </a>
           </li>
         </ul>
@@ -101,7 +114,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Table List</a>
+            {{-- <a class="navbar-brand" href="#pablo">Table List</a> --}}
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
