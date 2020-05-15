@@ -75,3 +75,5 @@ Route::get('cart/{id}', 'produkController@addtocart');
 Route::get('viewcart', 'addtocartcontroller@index');
 
 Route::get('optionbooking/{id}', 'BookingController@namaservis');
+
+Route::post('payment', 'midtransController@getToken');

@@ -42,6 +42,7 @@
 				<th>Nama Bengkel</th>
 				<th>Jadwal</th>
 				<th>Jam</th>
+				<th>Action</th>
 			</tr>
 			
 			@foreach ($booking as $booking)
@@ -58,6 +59,9 @@
 				</td>
 				<td>
 					{{$booking->jam}}
+				</td>
+				<td>
+					Delete
 				</td>
 			</tr>
 

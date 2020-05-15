@@ -71,6 +71,12 @@
 							Belt
 						</a>
 					</li>
+
+					<li class="p-t-4">
+						<a href="?f=13" class="s-text13">
+							Other
+						</a>
+					</li>
 				</ul>
 
 				<h4 class="m-text14 p-b-7">

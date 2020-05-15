@@ -20,6 +20,7 @@
 						<th class="column-1"></th>
 						<th class="column-2">Product</th>
 						<th class="column-3">Price</th>
+						<th class="column-4">Action</th>
 					</tr>
 					
 					@php
@@ -34,7 +35,8 @@
 							</div>
 						</td>
 						<td class="column-2">{{$cart->produk->nama}}</td>
-						<td class="column-3">{{$cart->produk->harga}}</td>
+						<td class="column-3">Rp{{$cart->produk->harga}}</td>
+						<td class="column-4">Delete</td>
 					</tr>
 
 					@php
@@ -47,10 +49,10 @@
 
 					<tr>
 						<td class="column-1">Total</td>
-						<td class="column-2">ini totalnya</td>
+						<td class="column-2">Rp{{$harga}}</td>
 						<td class="column-3" colspan="2"><div class="size15 trans-0-4">
 							<!-- Button -->
-							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="pay-button">
 								Checkout
 							</button>
 						</div></td>
@@ -128,7 +130,27 @@
 	});
 </script>
 <!--===============================================================================================-->
-<script src="js/main.js"></script>
+
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-KnVZ_xgXBMNq9Usl"></script>
+<script type="text/javascript">
+
+	document.getElementById('pay-button').onclick = function(){
+
+		var harga = <?= $harga ?>
+
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		})
+
+        // SnapToken acquired from previous step
+        $.post('/payment', {harga:harga}, function(response){
+        	snap.pay(response);
+        })
+    };
+</script>
+
 
 </body>
 </html>
