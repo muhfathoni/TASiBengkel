@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,4 +86,13 @@ Route::get('viewcart', 'addtocartcontroller@index');
 
 Route::get('optionbooking/{id}', 'BookingController@namaservis');
 
-Route::post('payment', 'midtransController@getToken');
+Route::prefix('payment')->group(function () {
+    Route::post('/', 'midtransController@getToken');
+    Route::get('/finish','midtransController@finish');
+});
+
+Route::get('viewcart/{id}', 'addtocartcontroller@destroy');
+
+Route::get('test', function(){
+    return view ('test');
+});

@@ -89,6 +89,7 @@ class addtocartcontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $carts = addtocart::with('tb_cart')->where('produk_id', $id)->where('user_id',Auth::user()->id)->delete();
+        return redirect('/viewcart')->with('status', 'Data Berhasil DiHapus');
     }
 }

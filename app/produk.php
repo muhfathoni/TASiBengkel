@@ -14,4 +14,17 @@ class produk extends Model
     public function produk(){
     	return $this->hasMany('App\addtocart', 'produk_id');
     }
+
+    public function transaksi(){
+        return $this->hasMany('App\transaksibarang', 'id_barang');
+    }
+
+    public function changeQty($status)
+    {
+        if ($status == 'settlement' || $status == 'pending') {
+            $this->stock = $this->stock - 1;
+        } else {
+            $this->stock = $this->stock + 1;
+        }
+    }
 }

@@ -124,9 +124,15 @@
 
 								<div class="block2-btn-addcart w-size1 trans-0-4 " id="{{$prod->id}}">
 									<!-- Button -->
-									<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 addToCart" ">
+									@if ($prod->stock > 0)
+									<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 addToCart">
 										Add to Cart
 									</button>
+									@else
+									<button class="flex-c-m size1 bg1 bo-rad-23 hov1 s-text1 trans-0-4" disabled>
+										Sold Out
+									</button>
+									@endif
 								</div>
 							</div>
 						</div>
@@ -156,7 +162,7 @@
 
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
-	$('.block2-btn-addcart').each(function(){
+		
 		var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 		$(this).on('click', function(){
 
