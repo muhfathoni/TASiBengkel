@@ -18,8 +18,8 @@ Booking
 
 <section>
 	<div class="container">
-		<div class="form-group mx-auto">
-			<table class="table table-responsive mx-auto px-1 text-center">
+		<div class="form-group mx-auto col-sm-12 col-md-6">
+			<table class="table table-responsive col-6 mx-auto px-1 text-center">
 				<form method="POST" id="login" action="{{url('booking/insert')}}">
 					{{csrf_field()}}
 					<tr>
