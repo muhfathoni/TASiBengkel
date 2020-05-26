@@ -64,7 +64,7 @@ class BookingController extends Controller
 
       $booking->save();
 
-      return redirect()->route('booking')->with('success', 'Booking berhasil');
+      return redirect()->route('bookingservice')->with('success', 'Booking berhasil');
   }
 
     /**
@@ -107,9 +107,10 @@ class BookingController extends Controller
      * @param  \App\booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(booking $booking)
+    public function destroy($id)
     {
-        //
+       $booking = Booking::with('tb_booking')->where('id',$id)->delete();
+        return redirect('/booking')->with('status', 'Data Berhasil DiHapus');
     }
 
     public function namaservis($id){

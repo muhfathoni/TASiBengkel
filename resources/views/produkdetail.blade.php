@@ -1,6 +1,10 @@
 
 @extends('layout.main')
 
+@section('title')
+Produk Detail
+@endsection
+
 @section('content')
 
 

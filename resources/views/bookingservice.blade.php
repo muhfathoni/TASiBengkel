@@ -1,5 +1,8 @@
-
 @extends('layout.main')
+
+@section('title')
+Booking
+@endsection
 
 @section('content')
 
@@ -11,42 +14,102 @@
 	</h1>
 </div>
 
-<table>
-	<tr>
-		<th>Booked Service</th>
-		<th>Nama Bengkel</th>
-		<th>Jadwal</th>
-		<th>Jam</th>
-	</tr>
+</section>
 
-	@foreach ($booking as $booking)
+<section>
+	<div class="container">
+		<div class="form-group mx-auto">
+			<table class="table table-responsive mx-auto px-1 text-center">
+				<form method="POST" id="login" action="{{url('booking/insert')}}">
+					{{csrf_field()}}
+					<tr>
+						<td>
+							Nama Bengkel
+						</td>
+						<td>
+							:
+						</td>
+						<td>
+							<select id="bengkel" name="bengkel"  class="form-control">
+								<option value=''>Pilih bengkel</option>
+								@foreach($bengkels as $bengkel)
+								<option value="{{$bengkel->id}}">{{$bengkel->name}}</option>
+								@endforeach
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Jenis Service
+						</td>
+						<td>
+							:
+						</td>
+						<td>
+							<!-- <input type="text" placeholder="   Nama Service" name="namaService"> -->
+							<select id="namaService" name="namaService" class="form-control">
+								<option value="Ganti Oli">Nama Servis</option>
+							</select>
+						</td>
+						<tr>
+							<td>
+								Jadwal Servis
+							</td>
+							<td>
+								:
+							</td>
+							<td>
 
-	<tr>
-		<td>
-			{{$booking->jenis_service}}
-		</td>
-		<td>
-			{{$booking->nama}}
-		</td>
-		<td>
-			{{$booking->jadwal}}
-		</td>
-		<td>
-			{{$booking->jam}}
-		</td>
-	</tr>
-
-	@endforeach
-</table>
-
-<a class="nav-link js-scroll-trigger" href="/booking" style="color: #000000">Booking Now!</a>
-
-</center>
-</div>
+								<input type="date" name="jadwalService" class="form-control">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Jam Booking
+							</td>
+							<td>
+								:
+							</td>
+							<td>
+								<select id="jamService" name="jamService" class="form-control">
+									<option value="09.00 - 12.00">09.00 - 12.00</option>
+									<option value="12.00 - 14.00">12.00 - 14.00</option>
+									<option value="14.00 - 17.00">14.00 - 17.00</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<input type="submit" name="submitBooking" value="Submit" class="form-control btn btn-primary btn-lg active">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								Already have booked booking slot? 
+								<a href="/booking">See your booking list now!</a>
+							</td>
+						</tr>
+				</form>
+			</table>
+		</div>
+	</div>
+</section>
 
 @endsection
 
-@section ('css')
-<link href="{{ asset ('css/creative.min.css') }}" rel="stylesheet">
+@push('script')
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#bengkel').on('click', function(){
+			let id = $(this).val()
 
-@endsection
+			if (id!=''){
+				$.get('optionbooking/'+id, function(response){
+					$('#namaService').html(response)
+				})
+			}
+		})
+	})
+</script>
+
+@endpush

@@ -7,7 +7,8 @@
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Any questions? Call us on (+62) 812 1451 1102 </br>
+						or email us at sibengkel@sibengkel.com
 					</p>
 
 					<div class="flex-m p-t-30">
@@ -52,7 +53,7 @@
 				</ul>
 			</div>
 
-			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+			<!-- <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
 					Links
 				</h4>
@@ -113,10 +114,10 @@
 							FAQs
 						</a>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 
-			<div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
+			<!-- <div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
 					Newsletter
 				</h4>
@@ -129,17 +130,17 @@
 
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
-						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+						<!-- <button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
 							Subscribe
 						</button>
 					</div>
 
 				</form>
-			</div>
+			</div> --> 
 		</div>
 
 		<div class="t-center p-l-15 p-r-15">
-			<a href="#">
+			<!-- <a href="#">
 				<img class="h-size2" src="images/icons/paypal.png" alt="IMG-PAYPAL">
 			</a>
 
@@ -157,10 +158,10 @@
 
 			<a href="#">
 				<img class="h-size2" src="images/icons/discover.png" alt="IMG-DISCOVER">
-			</a>
+			</a> -->
 
 			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				Copyright © SiBengkel 
 			</div>
 		</div>
 	</footer>

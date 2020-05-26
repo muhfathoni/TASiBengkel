@@ -51,48 +51,43 @@ Route::group(['middleware' => ['auth','admin']], function (){
 
 //punya toni sampe sini
 
-Route::get('jenis', function(){
-	return view ('jenis');
+
+//ini punya ganes
+
+Route::get('bookingservice', function(){
+ return view ('bookingservice');
 });
 
-Route::get('mitra', function(){
-	return view ('mitra');
-});
-
-Route::get('pembelianbarang', function(){
-	return view ('pembelianbarang');
-});
+Route::get('bookingservice', 'bookingserviceController@index')->middleware('checkbooking');
+Route::get('booking', 'BookingController@index')->name('booking')->middleware('checkbooking');
+Route::post('/bookingservice/insert', 'bookingserviceController@store');
+Route::get('optionbooking/{id}', 'BookingController@namaservis');
+Route::get('booking/{id}', 'bookingcontroller@destroy');
 
 Route::get('produk', 'produkController@index');
-
-Route::get('barangdibayar', function(){
-	return view ('barangdibayar');
-});
-
-Route::get('/logout', 'Auth\logoutController@logout');
-
 Route::get('/produk/{id}', 'produkController@show')->name('produkdetail');
 
-// Route::get('booking', function(){
-// 	return view ('booking');
-// });
-
-Route::get('booking', 'BookingController@index')->name('booking')->middleware('checkbooking');
-Route::post('/booking/insert', 'BookingController@store');
-
 Route::get('cart/{id}', 'produkController@addtocart');
-
+Route::get('viewcart/{id}', 'addtocartcontroller@destroy');
 Route::get('viewcart', 'addtocartcontroller@index');
-
-Route::get('optionbooking/{id}', 'BookingController@namaservis');
 
 Route::prefix('payment')->group(function () {
     Route::post('/', 'midtransController@getToken');
     Route::get('/finish','midtransController@finish');
 });
 
-Route::get('viewcart/{id}', 'addtocartcontroller@destroy');
+Route::get('/logout', 'Auth\logoutController@logout');
 
-Route::get('test', function(){
-    return view ('test');
-});
+Route::get('/produk/{id}', 'produkController@show')->name('produkdetail');
+
+// Route::get('barangdibayar', function(){
+//  return view ('barangdibayar');
+// });
+
+// Route::get('pembelianbarang', function(){
+//     return view ('pembelianbarang');
+// });
+
+// Route::get('jenis', function(){
+//     return view ('jenis');
+// });

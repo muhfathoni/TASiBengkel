@@ -45,10 +45,6 @@
                 <a class="nav-link js-scroll-trigger" href="/login" style="color: #000000">Login</a>
                 </li>
                 @endif
-
-                
-
-                
             </ul>
         </div>
     </div>

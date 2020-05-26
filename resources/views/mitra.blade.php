@@ -1,6 +1,10 @@
 
 @extends('layout.main')
 
+@section('title')
+Mitra
+@endsection
+
 @section('content')
 
 <section style="background: url('img/background-mitra.jpg'); height: 300px;">

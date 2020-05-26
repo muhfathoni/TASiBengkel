@@ -1,5 +1,9 @@
 @extends('layout.main')
 
+@section('title')
+Cart
+@endsection
+
 @section('content')
 
 <!-- Title Page -->

@@ -1,19 +1,22 @@
-
 @extends('layout.main')
+
+@section('title')
+Booking
+@endsection
 
 @section('content')
 
-<section style="background: url('img/background-mitra.jpg'); height: 300px;">
-	<div class="text-center text-white" style="text-shadow: #0b0b0b 3px 3px"
-	">
-	<h1 class="text-uppercase">
-		<strong>Booked Service</strong>
-	</h1>
-</div>
-
+<div class="container-fluid">
+	<section style="background: url('img/background-mitra.jpg'); height: 300px;">
+		<div class="text-center text-white" style="text-shadow: #0b0b0b 3px 3px"
+		">
+		<h1 class="text-uppercase">
+			<strong>Booked Service</strong>
+		</h1>
+	</div>
 </section>
-
-@if(count($errors)>0)
+</div>
+<!-- @if(count($errors)>0)
 <div class="alert alert-danger">
 	<ul>
 		@foreach($errors->all() as $error)
@@ -30,126 +33,47 @@
 		{{\Session::get('success') }}
 	</p>
 </div>
-@endif
+@endif -->
 
 <center>
-	<div class="container-mitra"> 
+	<div class="table-responsive">
+		<div class="container"> 
+			<table class="table">
+				<tr>
+					<th>Booked Service</th>
+					<th>Nama Bengkel</th>
+					<th>Jadwal</th>
+					<th>Jam</th>
+					<th>Action</th>
+				</tr>
 
+				@foreach ($booking as $booking)
 
-		<table>
-			<tr>
-				<th>Booked Service</th>
-				<th>Nama Bengkel</th>
-				<th>Jadwal</th>
-				<th>Jam</th>
-				<th>Action</th>
-			</tr>
-			
-			@foreach ($booking as $booking)
-			
-			<tr>
-				<td>
-					{{$booking->namaservis->nama_servis}}
-				</td>
-				<td>
-					{{$booking->namabengkel->name}}
-				</td>
-				<td>
-					{{$booking->jadwal}}
-				</td>
-				<td>
-					{{$booking->jam}}
-				</td>
-				<td>
-					Delete
-				</td>
-			</tr>
+				<tr>
+					<td>
+						{{$booking->namaservis->nama_servis}}
+					</td>
+					<td>
+						{{$booking->namabengkel->name}}
+					</td>
+					<td>
+						{{$booking->jadwal}}
+					</td>
+					<td>
+						{{$booking->jam}}
+					</td>
+					<td>
+						<button class="btn btn-sm btn-danger hapus-barang" type="button" id="{{$booking->id}}" onclick="deleteFunction({{$booking->id}})">
+							<i class="fa fa-trash" aria-hidden="true"></i> Hapus
+						</button>
+					</td>
+				</tr>
 
-			@endforeach
-		</table>
-
-		<section style="background: url('img/background-mitra.jpg'); height: 300px;">
-			<div class="text-center text-white" style="text-shadow: #0b0b0b 3px 3px"
-			">
-			<h1 class="text-uppercase">
-				<strong>Booking Service</strong>
-			</h1>
+				@endforeach
+			</table>
 		</div>
-
-	</section>
-
-	<table>
-		<form method="POST" id="login" action="{{url('booking/insert')}}">
-			{{csrf_field()}}
-			<tr>
-				<td>
-					Nama Bengkel
-				</td>
-				<td>
-					:
-				</td>
-				<td>
-					<select id="bengkel" name="bengkel">
-						<option value=''>Pilih bengkel</option>
-						@foreach($bengkels as $bengkel)
-						<option value="{{$bengkel->id}}">{{$bengkel->name}}</option>
-						@endforeach
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Jenis Service
-				</td>
-				<td>
-					:
-				</td>
-				<td>
-					<!-- <input type="text" placeholder="   Nama Service" name="namaService"> -->
-					<select id="namaService" name="namaService">
-						<option value="Ganti Oli">Nama Servis</option>
-					</select>
-				</td>
-				<tr>
-					<td>
-						Jadwal Servis
-					</td>
-					<td>
-						:
-					</td>
-					<td>
-
-						<input type="date" name="jadwalService">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Jam Booking
-					</td>
-					<td>
-						:
-					</td>
-					<td>
-						<select id="jamService" name="jamService">
-							<option value="09.00 - 12.00">09.00 - 12.00</option>
-							<option value="12.00 - 14.00">12.00 - 14.00</option>
-							<option value="14.00 - 17.00">14.00 - 17.00</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="submit" name="submitBooking" value="Submit">
-					</td>
-				</tr>
-			</tr>
-		</form>
-	</table>
-
-
-
+	</div>
 </center>
-</div>
 
 @endsection
 
@@ -171,6 +95,31 @@
 			}
 		})
 	})
+
+	function deleteFunction(id){
+		swal({
+			title: "Are you sure?",
+			text: "Once deleted, you will not be able to recover this product",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.get('booking/'+id, function(response){
+					swal("Your booking has been deleted!",{
+						icon: "success", 
+						buttons: true,
+					})
+					.then((deleted)=>{
+						window.location.reload();
+					});
+				})
+			} else {
+				swal("Your booking has not been deleted");
+			}
+		})
+	}
 </script>
 
 @endpush

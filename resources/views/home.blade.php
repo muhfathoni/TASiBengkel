@@ -7,6 +7,10 @@ if (isset($_SESSION['username'])) {
 
 @extends('layout.main')
 
+@section('title')
+Home
+@endsection
+
 @section('content')
 
 <body id="page-top">

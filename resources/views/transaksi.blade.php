@@ -1,5 +1,9 @@
 @extends('layout.main')
 
+@section('title')
+Transaksi
+@endsection
+
 @section('content')
 
 <!-- Title Page -->

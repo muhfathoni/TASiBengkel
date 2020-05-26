@@ -2,6 +2,10 @@
 
 @extends('layout.main')
 
+@section('title')
+Produk
+@endsection
+
 @section('content')
 
 
