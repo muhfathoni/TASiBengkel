@@ -79,10 +79,10 @@
           </li>
 
           @if (\Auth::user()->usertype == 'superadmin')
-            <li class="inputitem ">
-              <a href="/inputitem">
+            <li class="inputbarang ">
+              <a href="/inputbarang">
                 <i class="now-ui-icons shopping_tag-content"></i>
-                <p class="text-light">Input Item</p>
+                <p class="text-light">Input Barang</p>
               </a>
             </li>
           @endif

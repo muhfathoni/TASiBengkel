@@ -44,9 +44,9 @@ Route::group(['middleware' => ['auth','admin']], function (){
 
     Route::get('/revenue/chart/{year?}', 'Admin\DashboardController@chartrevenue');
 
-    Route::get('/inputitem' , 'Admin\DashboardController@inputitem');
+    Route::get('/inputbarang' , 'Admin\DashboardController@inputbarang');
 
-    Route::post('/inputitem' , 'Admin\DashboardController@tambahitem');
+    Route::post('/tambahbarang' , 'Admin\DashboardController@tambahbarang');
 });
 
 //punya toni sampe sini

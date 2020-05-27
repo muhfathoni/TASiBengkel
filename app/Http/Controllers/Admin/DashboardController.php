@@ -7,6 +7,7 @@ use App\Booking;
 use Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use App\Models\Inputbarang;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -223,17 +224,22 @@ class DashboardController extends Controller
         return $data;
     }
 
-    public function inputitem(){
+    public function inputbarang(){
 
         return view('admin.input');
     }
 
+    // public function tambahbarang(Request $request){
 
+    //     $tambahbarang = new Inputbarang;
 
-
-
-
-
-
+    //     $tambahbarang->nama = $request->input('nama');
+    //     $tambahbarang->deskripsi = $request->input('deskripsi');
+    //     $tambahbarang->stock = $request->input('stock');
+    //     $tambahbarang->harga = $request->input('harga');    
+        
+    //     $tambahbarang->save();
+    //     return redirect('inputbarang')-with('success');
+    // }
 
 }
