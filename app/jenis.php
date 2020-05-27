@@ -10,4 +10,8 @@ class jenis extends Model
     protected $fillable = ['namajenis'];
 
     public $timestamps = 'false';
+
+    public function produk(){
+    	return $this->hasMany('App\produk', 'jenis_id');
+    }
 }

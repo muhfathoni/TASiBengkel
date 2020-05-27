@@ -7,8 +7,9 @@ use App\Booking;
 use Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
-use App\Models\Inputbarang;
+use App\produk;
 use Illuminate\Http\Request;
+use App\jenis;
 
 class DashboardController extends Controller
 {
@@ -226,20 +227,40 @@ class DashboardController extends Controller
 
     public function inputbarang(){
 
-        return view('admin.input');
+        $jenis = jenis::all();
+        $products = produk::all();
+        
+        
+        return view('admin.input')->with('jenis', $jenis)->with('products', $products);
     }
 
-    // public function tambahbarang(Request $request){
+    public function tambahbarang(Request $request){
 
-    //     $tambahbarang = new Inputbarang;
+        $filename = $request->file('gambar')->storeAs('img_produk', Carbon::now()->timestamp.'.'.$request->file('gambar')->extension());
+        $tambahbarang = new produk;
 
-    //     $tambahbarang->nama = $request->input('nama');
-    //     $tambahbarang->deskripsi = $request->input('deskripsi');
-    //     $tambahbarang->stock = $request->input('stock');
-    //     $tambahbarang->harga = $request->input('harga');    
-        
-    //     $tambahbarang->save();
-    //     return redirect('inputbarang')-with('success');
-    // }
+        $tambahbarang->nama = $request->input('nama');
+        $tambahbarang->deskrip = $request->input('deskripsi');
+        $tambahbarang->stock = $request->input('stock');
+        $tambahbarang->harga = $request->input('harga');    
+        $tambahbarang->jenis_id = $request->input('jenisbarang');
+        $tambahbarang->gambar_b = '/storage/'. $filename;
+        $tambahbarang->save();
+       
+        return redirect('inputbarang')->with('success');
+    }
 
+    public function deletebarang($id){
+
+        produk::destroy($id);
+
+        return redirect()->back();
+    }
+
+    public function editbarang($id){
+
+        $barang = produk::find($id);
+
+        return view()->back();
+    }
 }

@@ -47,6 +47,12 @@ Route::group(['middleware' => ['auth','admin']], function (){
     Route::get('/inputbarang' , 'Admin\DashboardController@inputbarang');
 
     Route::post('/tambahbarang' , 'Admin\DashboardController@tambahbarang');
+
+    Route::get('/deletebarang/{id}', 'Admin\DashboardController@deletebarang');
+
+    Route::get('/editbarang/{id}', 'Admin\DashboardController@editbarang');
+
+    Route::post('/editbarang/{id}', 'Admin\DashboardController@edit');
 });
 
 //punya toni sampe sini

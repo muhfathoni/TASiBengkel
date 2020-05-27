@@ -27,4 +27,9 @@ class produk extends Model
             $this->stock = $this->stock + 1;
         }
     }
+
+    public function jenis(){
+    	return $this->belongsTo('App\jenis', 'jenis_id');
+    }
+    
 }
