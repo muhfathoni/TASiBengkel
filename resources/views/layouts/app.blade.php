@@ -22,7 +22,7 @@
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background-image: url('img/header.jpg')">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -76,7 +76,7 @@
         </div>
     </nav>
 
-    <main class="py-5" style="background-image: url('img/header.jpg');">
+    <main class="py-5" >
         @yield('content')
     </main>
 </div>
