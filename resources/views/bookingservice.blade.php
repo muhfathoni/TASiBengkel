@@ -20,7 +20,7 @@ Booking
 	<div class="container">
 		<div class="form-group mx-auto col-sm-12 col-md-6">
 			<table class="table table-responsive col-6 mx-auto px-1 text-center">
-				<form method="POST" id="login" action="{{url('booking/insert')}}">
+				<form method="POST" id="login" action="{{url('bookingservice/insert')}}">
 					{{csrf_field()}}
 					<tr>
 						<td>

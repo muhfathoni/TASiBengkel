@@ -34,7 +34,7 @@ Produk
 				<ul class="p-b-54">
 
 					<li class="p-t-4">
-						<a href="?f=1" class="s-text13">
+						<a href="{{ app('produk')->f('1')}}" class="s-text13">
 							Helmet
 						</a>
 					</li>
@@ -166,20 +166,20 @@ Produk
 
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
-		
-		var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-		$(this).on('click', function(){
 
-			let id = $(this).attr('id');
-			$.get('cart/'+id, function(response){
-				if(response==1){
-					swal(nameProduct, "is added to cart !", "success");
-				}
-				else if (response==0)
-				{
-					swal(nameProduct, "already in cart !", "error");
-				}
-				else if (response==2){
+	var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+	$(this).on('click', function(){
+
+		let id = $(this).attr('id');
+		$.get('cart/'+id, function(response){
+			if(response==1){
+				swal(nameProduct, "is added to cart !", "success");
+			}
+			else if (response==0)
+			{
+				swal(nameProduct, "already in cart !", "error");
+			}
+			else if (response==2){
 					// swal("Login to continue!", "error");
 
 					swal("Login to continue")
@@ -191,10 +191,10 @@ Produk
 					});
 				}
 			});
-			
-			
-		});
+
+
 	});
+});
 </script>
 
 

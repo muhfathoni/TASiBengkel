@@ -76,7 +76,7 @@
         </div>
     </nav>
 
-    <main class="py-4">
+    <main class="py-5" style="background-image: url('img/header.jpg');">
         @yield('content')
     </main>
 </div>
