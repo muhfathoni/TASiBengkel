@@ -50,9 +50,9 @@ Route::group(['middleware' => ['auth','admin']], function (){
 
     Route::get('/deletebarang/{id}', 'Admin\DashboardController@deletebarang');
 
-    Route::get('/editbarang/{id}', 'Admin\DashboardController@editbarang');
+    Route::get('/editbarang/{id}', 'Admin\DashboardController@edit');
 
-    Route::post('/editbarang/{id}', 'Admin\DashboardController@edit');
+    Route::post('/editbarang/{id}', 'Admin\DashboardController@editbarang');
 });
 
 //punya toni sampe sini

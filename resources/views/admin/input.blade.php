@@ -84,8 +84,9 @@
                               <td>{{ $row->stock }}</td>
                               <td>{{ $row->harga }}</td> 
                               <td> <img src="{{url($row->gambar_b)}}"></td>
-                        <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editbarang" data-barang="{{$row->toJson()}}">EDIT </button>
+                        <td> 
+                        <a href="editbarang/{{$row->id}}" class="btn btn-success">EDIT</a> 
+                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editbarang" data-barang="{{$row->toJson()}}">EDIT </button> --}}
                         </td>
                         <td> 
                         <a href="deletebarang/{{$row->id}}" class="btn btn-danger">DELETE</a> 
@@ -101,7 +102,7 @@
             </div>
           </div>
                   
-          <div class="modal fade" id="editbarang" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          {{-- <div class="modal fade" id="editbarang" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -147,7 +148,7 @@
           
               </div>
             </div>
-          </div>
+          </div> --}}
 
 @endsection
 

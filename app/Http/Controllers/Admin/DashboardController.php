@@ -145,12 +145,12 @@ class DashboardController extends Controller
     {
         if (Auth::user()->usertype == 'admin') {
             $tahunArray = $this->daftarTahun(true);
-            $total_pendapatan = Booking::where('id_bengkel',Auth::user()->id)->sum('revenue');
+            $total_pendapatan = Booking::where('id_bengkel',Auth::user()->id)->sum('revenue') ;
             
             } 
         else {
             $tahunArray = $this->daftarTahun();
-            $total_pendapatan = Booking::sum('revenue');
+            $total_pendapatan = Booking::sum('revenue') * 0.05;
             
         }
 
@@ -172,6 +172,16 @@ class DashboardController extends Controller
                                         ->groupBy(function($booking_item){
                                             return Carbon::parse($booking_item->jadwal)->format('Y');
                                         })->toArray();
+
+                                        foreach ($daftar_tahun as $key => $tahun) {
+                                            $pendapatan = 0;
+                                            if(array_key_exists($tahun,$pendapatan_per_tahun)){
+                                                foreach ($pendapatan_per_tahun[$tahun] as $k=>$v){
+                                                    $pendapatan += $v['revenue'];
+                                                } 
+                                            }
+                                            $data[$index++] = [ $tahun, $pendapatan];
+                                        }
             } else {
                 $daftar_tahun = $this->daftarTahun();
 
@@ -179,18 +189,18 @@ class DashboardController extends Controller
                                     ->groupBy(function($booking_item){
                                         return Carbon::parse($booking_item->jadwal)->format('Y');
                                     })->toArray();
+
+                                    foreach ($daftar_tahun as $key => $tahun) {
+                                        $pendapatan = 0;
+                                        if(array_key_exists($tahun,$pendapatan_per_tahun)){
+                                            foreach ($pendapatan_per_tahun[$tahun] as $k=>$v){
+                                                $pendapatan += $v['revenue'] * 0.05;
+                                            } 
+                                        }
+                                        $data[$index++] = [ $tahun, $pendapatan];
+                                    }
             }
            
-            
-            foreach ($daftar_tahun as $key => $tahun) {
-                $pendapatan = 0;
-                if(array_key_exists($tahun,$pendapatan_per_tahun)){
-                    foreach ($pendapatan_per_tahun[$tahun] as $k=>$v){
-                        $pendapatan += $v['revenue'];
-                    } 
-                }
-                $data[$index++] = [ $tahun, $pendapatan];
-            }
 
         } else {
             $data[0] = [$year,'Pendapatan'];
@@ -201,25 +211,34 @@ class DashboardController extends Controller
                                     ->groupBy(function($booking_item){
                                         return Carbon::parse($booking_item->jadwal)->format('F');
                                     })->toArray();
+
+                                    foreach ($daftar_bulan as $key => $bulan) {
+                                        $pendapatan = 0;
+                                        if(array_key_exists($bulan,$pendapatan_per_bulan)){
+                                            foreach ($pendapatan_per_bulan[$bulan] as $k=>$v){
+                                                $pendapatan += $v['revenue'];
+                                            } 
+                                        }
+                                        $data[$index++] = [ $bulan, $pendapatan];
+                                    }
             }
             else{
                 $pendapatan_per_bulan = Booking::whereYear('jadwal',$year)->orderBy('jadwal')->get()
                 ->groupBy(function($booking_item){
                     return Carbon::parse($booking_item->jadwal)->format('F');
                 })->toArray();
-            }
-            
-            
-            foreach ($daftar_bulan as $key => $bulan) {
-                $pendapatan = 0;
-                if(array_key_exists($bulan,$pendapatan_per_bulan)){
-                    foreach ($pendapatan_per_bulan[$bulan] as $k=>$v){
-                        $pendapatan += $v['revenue'];
-                    } 
-                }
-                $data[$index++] = [ $bulan, $pendapatan];
-            }
 
+                foreach ($daftar_bulan as $key => $bulan) {
+                    $pendapatan = 0;
+                    if(array_key_exists($bulan,$pendapatan_per_bulan)){
+                        foreach ($pendapatan_per_bulan[$bulan] as $k=>$v){
+                            $pendapatan += $v['revenue'] * 0.05;
+                        } 
+                    }
+                    $data[$index++] = [ $bulan, $pendapatan];
+                }
+            }
+            
         }
 
         return $data;
@@ -257,10 +276,33 @@ class DashboardController extends Controller
         return redirect()->back();
     }
 
-    public function editbarang($id){
+    public function edit($id)
+    {
+        $editbarang = produk::find($id);
+        $jenis = jenis::all();
 
-        $barang = produk::find($id);
+        return view('admin.edit')->with('editbarang', $editbarang)->with('jenis', $jenis);
+        
+    }
 
-        return view()->back();
+    public function editbarang(Request $request, $id){
+
+       
+        $tambahbarang = produk::find($id);
+
+        $tambahbarang->nama = $request->input('nama');
+        $tambahbarang->deskrip = $request->input('deskripsi');
+        $tambahbarang->stock = $request->input('stock');
+        $tambahbarang->harga = $request->input('harga');    
+        $tambahbarang->jenis_id = $request->input('jenisbarang');
+        if ($request->has('gambar') && $request->file('gambar')->isValid()) {
+
+            $filename = $request->file('gambar')->storeAs('img_produk', Carbon::now()->timestamp.'.'.$request->file('gambar')->extension());
+            $tambahbarang->gambar_b = '/storage/'. $filename;
+        }
+
+        $tambahbarang->save();
+       
+        return redirect('inputbarang')->with('success');
     }
 }

@@ -17,7 +17,7 @@ Daftar Booking | Mitra SiBengkel
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table">
+          <table class="table" id='table' >
             <thead class=" text-primary">
               <th>ID</th>
               <th>Nama</th>
@@ -36,7 +36,8 @@ Daftar Booking | Mitra SiBengkel
                 <td>{{ $row->jadwal }}</td>
                 <td>
                   @if ($row->revenue > 0)
-                      Rp{{number_format($row->revenue,2,',','.')}}
+                      {{-- Rp{{number_format($row->revenue,2,',','.')}} --}}
+                 {{$row->revenue}} 
                   @else
                   <div class="input-group mb-3">
                     <input type="number" class="form-control" placeholder="Contoh: 100000" aria-label="Income" aria-describedby="basic-addon2" id="{{ 'revenue'.$row->id }}">
@@ -112,6 +113,7 @@ Daftar Booking | Mitra SiBengkel
 <script type="text/javascript"> 
 
   $(document).ready(function(){
+    $('#table').DataTable(); 
     $('.revenue-enter').on('click',function(){
 
       var id_booking = $(this).attr('id');
