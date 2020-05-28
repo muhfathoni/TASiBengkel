@@ -84,7 +84,6 @@ Route::prefix('payment')->group(function () {
 
 Route::get('/logout', 'Auth\logoutController@logout');
 
-Route::get('/produk/{id}', 'produkController@show')->name('produkdetail');
 
 // Route::get('barangdibayar', function(){
 //  return view ('barangdibayar');

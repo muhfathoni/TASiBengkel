@@ -34,7 +34,7 @@ Produk
 				<ul class="p-b-54">
 
 					<li class="p-t-4">
-						<a href="{{ app('produk')->f('1')}}" class="s-text13">
+						<a href="?f=2" class="s-text13">
 							Helmet
 						</a>
 					</li>
