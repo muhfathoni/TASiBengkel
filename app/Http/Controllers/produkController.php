@@ -15,10 +15,16 @@ class produkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $Request)
     {
+        if($Request->f == null){
+            $produk = produk::all();
+        }
+        else{
+            $produk=produk::where('jenis_id', $Request->f)->get();
+        }
         //print dari tb_produk
-        $produk = produk::all();
+        
 
         //membuat api
         $data['title'] = 'API produk';

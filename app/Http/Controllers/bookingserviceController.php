@@ -36,6 +36,11 @@ public function namaservis($id){
 public function store(Request $request)
 {
 
+        $this->validate($request, [
+        'jadwalService'        => 'required', 
+        'jamService'           => 'required'
+    ]);
+
   $booking = new Booking();
 
   $booking->userid = Auth::user()->id;

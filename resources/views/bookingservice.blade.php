@@ -7,14 +7,22 @@ Booking
 @section('content')
 
 <section style="background: url('img/background-mitra.jpg'); height: 300px;">
-	<div class="text-center text-white" style="text-shadow: #0b0b0b 3px 3px"
-	">
+	<div class="text-center text-white" style="text-shadow: #0b0b0b 3px 3px">
 	<h1 class="text-uppercase">
 		<strong>Booking Service</strong>
 	</h1>
 </div>
 
 </section>
+                            @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
 
 <section>
 	<div class="container">
@@ -46,7 +54,6 @@ Booking
 							:
 						</td>
 						<td>
-							<!-- <input type="text" placeholder="   Nama Service" name="namaService"> -->
 							<select id="namaService" name="namaService" class="form-control">
 								<option value="Ganti Oli">Nama Servis</option>
 							</select>
