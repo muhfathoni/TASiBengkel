@@ -88,18 +88,29 @@
             </li>
           @endif
           
+          @if (\Auth::user()->usertype == 'superadmin')
+          <li class="inputmitra ">
+            <a href="/inputmitra">
+              <i class="now-ui-icons ui-1_settings-gear-63"></i>
+              <p class="text-light">Input Mitra</p>
+            </a>
+          </li>
+        @endif
+
           {{-- <li>
             <a href="./typography.html">
               <i class="now-ui-icons text_caps-small"></i>
               <p>Typography</p>
             </a>
           </li> --}}
+          @if (\Auth::user()->usertype == 'admin')
           <li class="contact">
             <a href="www.gmail.com">
               <i class="now-ui-icons tech_mobile"></i>
               <p class="text-light">Contact Us</p>
             </a>
           </li>
+          @endif
         </ul>
       </div>
     </div>

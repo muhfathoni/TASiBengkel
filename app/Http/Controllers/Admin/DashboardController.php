@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\produk;
 use Illuminate\Http\Request;
 use App\jenis;
+use App\inputmitra;
 
 class DashboardController extends Controller
 {
@@ -305,4 +306,59 @@ class DashboardController extends Controller
        
         return redirect('inputbarang')->with('success');
     }
+
+    public function inputmitra(){
+
+        $inputmitra = inputmitra::all();
+        
+        
+        return view('admin.inputmitra')->with('inputmitra', $inputmitra);
+    }
+
+    public function tambahmitra(Request $request){
+
+        $filename = $request->file('gambar')->storeAs('img_mitra', Carbon::now()->timestamp.'.'.$request->file('gambar')->extension());
+        $tambahmitra = new inputmitra;
+
+        $tambahmitra->nama = $request->input('nama');
+        $tambahmitra->deskripsi = $request->input('deskripsi');
+        $tambahmitra->gambar = '/storage/'. $filename;
+        $tambahmitra->save();
+       
+        return redirect('inputmitra')->with('success');
+    }
+
+    public function deletemitra($id){
+
+        inputmitra::destroy($id);
+
+        return redirect()->back();
+    }
+
+    public function editmitra($id)
+    {
+        $editmitra = inputmitra::find($id);
+
+        return view('admin.editmitra')->with('editmitra', $editmitra);
+        
+    }
+
+    public function editmitrasibengkel(Request $request, $id){
+
+       
+        $tambahmitra = inputmitra::find($id);
+
+        $tambahmitra->nama = $request->input('nama');
+        $tambahmitra->deskripsi = $request->input('deskripsi');
+        if ($request->has('gambar') && $request->file('gambar')->isValid()) {
+
+            $filename = $request->file('gambar')->storeAs('img_mitra', Carbon::now()->timestamp.'.'.$request->file('gambar')->extension());
+            $tambahmitra->gambar = '/storage/'. $filename;
+        }
+
+        $tambahmitra->save();
+       
+        return redirect('inputmitra')->with('success');
+    }
+    
 }

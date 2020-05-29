@@ -53,6 +53,16 @@ Route::group(['middleware' => ['auth','admin']], function (){
     Route::get('/editbarang/{id}', 'Admin\DashboardController@edit');
 
     Route::post('/editbarang/{id}', 'Admin\DashboardController@editbarang');
+
+    Route::get('/inputmitra' , 'Admin\DashboardController@inputmitra');
+
+    Route::post('/tambahmitra' , 'Admin\DashboardController@tambahmitra');
+
+    Route::get('/deletemitra/{id}', 'Admin\DashboardController@deletemitra');
+
+    Route::get('/editmitra/{id}', 'Admin\DashboardController@editmitra');
+
+    Route::post('/editmitra/{id}', 'Admin\DashboardController@editmitrasibengkel');
 });
 
 //punya toni sampe sini
