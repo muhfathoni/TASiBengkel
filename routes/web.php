@@ -94,6 +94,8 @@ Route::prefix('payment')->group(function () {
 
 Route::get('/logout', 'Auth\logoutController@logout');
 
+Route::get('mitra', 'inputmitraController@index');
+
 
 // Route::get('barangdibayar', function(){
 //  return view ('barangdibayar');
