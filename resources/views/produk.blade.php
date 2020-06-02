@@ -126,10 +126,10 @@ Produk
 									<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
 								</a>
 
-								<div class="block2-btn-addcart w-size1 trans-0-4 " id="{{$prod->id}}">
+								<div class="block2-btn-addcart w-size1 trans-0-4 ">
 									<!-- Button -->
 									@if ($prod->stock > 0)
-									<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 addToCart">
+									<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 addToCart" id="{{$prod->id}}" data-nama="{{$prod->nama}}">
 										Add to Cart
 									</button>
 									@else
@@ -167,10 +167,16 @@ Produk
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
 
-	var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-	$(this).on('click', function(){
+	// var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+
+	
+
+	$('.addToCart').on('click', function(){
+
 
 		let id = $(this).attr('id');
+		var nameProduct = $(this).data('nama');
+		// console.log(id);
 		$.get('cart/'+id, function(response){
 			if(response==1){
 				swal(nameProduct, "is added to cart !", "success");
@@ -194,22 +200,7 @@ Produk
 
 
 	});
-});
+
 </script>
-
-
-
-<!-- <script type="text/javascript">
-	$(document).ready(function(){
-		// alert('test')
-		$(".addToCart").on('click',function(){
-			// alert('berhasil')
-			let id = $(this).attr('id');
-			$.get('cart/'+id, function(response){
-				// alert(response.user_id)
-			});
-		});
-	})
-</script> -->
 
 @endpush
