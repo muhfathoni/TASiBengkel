@@ -126,7 +126,7 @@ Daftar Booking | Mitra SiBengkel
       var revenue = $('#revenue'+id_booking).val();
       $.post( "/revenue", { id_booking: id_booking, revenue: revenue })
       .done(function( data ) {
-        alert( "Revenue Added" );
+        window.location.reload();
       });
     });
 

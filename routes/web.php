@@ -63,6 +63,12 @@ Route::group(['middleware' => ['auth','admin']], function (){
     Route::get('/editmitra/{id}', 'Admin\DashboardController@editmitra');
 
     Route::post('/editmitra/{id}', 'Admin\DashboardController@editmitrasibengkel');
+
+    Route::get('/markNotif', 'Admin\DashboardController@markNotif');
+        
+    Route::get('/symlink', function () {
+        \Artisan::call('storage:link');
+        });
 });
 
 //punya toni sampe sini
