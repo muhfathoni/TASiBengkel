@@ -74,11 +74,12 @@ Route::get('bookingservice', function(){
  return view ('bookingservice');
 });
 
-Route::get('bookingservice', 'bookingserviceController@index')->middleware('checkbooking');
-Route::get('booking', 'BookingController@index')->name('booking')->middleware('checkbooking');
 Route::post('/bookingservice/insert', 'bookingserviceController@store');
+Route::get('bookingservice', 'bookingserviceController@index')->middleware('checkbooking');
+
+Route::get('booking', 'BookingController@index')->name('booking')->middleware('checkbooking');
 Route::get('optionbooking/{id}', 'BookingController@namaservis');
-Route::get('booking/{id}', 'bookingcontroller@destroy');
+Route::get('booking/{id}', 'BookingController@destroy');
 
 Route::get('produk', 'produkController@index');
 Route::get('/produk/{id}', 'produkController@show')->name('produkdetail');
