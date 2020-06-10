@@ -145,17 +145,28 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
+              <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  <i class="now-ui-icons media-2_sound-wave"> </i> 
+                <span class="badge badge-danger" id="notif-count">{{\Auth::user()->unreadNotifications->count() }}</span>
                   <p>
                     <span class="d-lg-none d-md-block">Stats</span>
                   </p>
                 </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                      @foreach (\Auth::user()->unreadNotifications as $notification)
+                    <li class="list-group-item">Mitra <b>{{ $notification->data['nama']}}</b> menyelesaikan <b>{{ $notification->data['jenis_service'] }}</b> sebesar <b>Rp{{ number_format($notification->data['revenue'],2,',','.') }}</b> pada <b>{{ \Carbon\Carbon::parse($notification->created_at)->setTimezone('Asia/Jakarta')->format('H:i d/m/Y') }}</b></b></li>
+                      @endforeach
+                      
+                    </ul>
+                  </div>
+              </div>
               </li>
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }} <span class="caret"></span>
+                    {{ Auth::user()->name }}
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -247,6 +258,22 @@
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  
+  <script>
+    $(document).ready(() => {
+      $('#navbarDropdown').on('click',() => {
+        let span = $('#notif-count')
+        // span.html('0')
+        $.ajax({
+          url: '/markNotif',
+          method: 'GET',
+          success:function(resp){
+            span.html(resp)
+          }
+        })
+      })
+    })
+  </script>
   @yield('scripts')
   
 </body>

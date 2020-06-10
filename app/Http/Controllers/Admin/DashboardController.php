@@ -11,6 +11,7 @@ use App\produk;
 use Illuminate\Http\Request;
 use App\jenis;
 use App\inputmitra;
+use App\Notifications\notif;
 
 class DashboardController extends Controller
 {
@@ -137,6 +138,10 @@ class DashboardController extends Controller
         public function income(Request $request)
         { 
             $income = Booking::where('id',$request->id_booking)->update(['revenue' => $request->revenue]); 
+            $booking = Booking::where('id',$request->id_booking)->first();
+            $user = User::where('id', Auth::user()->id)->orWhere('usertype', 'superadmin')->get();
+
+            \Notification::send($user, new notif($booking));
             
             return true;
          }
@@ -361,4 +366,10 @@ class DashboardController extends Controller
         return redirect('inputmitra')->with('success');
     }
     
+    public function markNotif()
+    {
+        Auth::user()->unreadNotifications->markAsRead();
+
+        return 0;
+    }
 }
