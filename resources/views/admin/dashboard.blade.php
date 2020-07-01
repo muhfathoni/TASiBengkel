@@ -65,26 +65,35 @@
             <div class="card-deck mb-3">
               <div class="card">
                 <div class="card-body text-center">
-                  <h5>Jumlah Customer</h5>
+                  <h5>Jumlah Customer  {{\Auth::user()->name}} </h5>
                   <h5 class="font-weight-bold">{{$cust}}</h5>
                 </div>
               </div>
 
               <div class="card">
                 <div class="card-body text-center">
-                  <h5>Total Booking</h5>
+                  <a href="/bookingadmin">
+                  <h5 class="text-dark">Total Booking</h5>
+                  </a>
                   <h5 class="font-weight-bold">{{$booking}}</h5>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"> Daftar Booking </h4>
+           <div class="col-md-12">
+            <div class="card-deck mb-3">
+              <div class="card">
+                <div class="card-body text-center">
+                  <a href="/revenue">
+                  <h5 class="text-dark">Total Pendapatan</h5>
+                </a>
+                  <h5 class="font-weight-bold">Rp{{number_format($total_pendapatan,2,',','.')}}</h5>
+                </div>
               </div>
+            </div>
+          </div>
               <div class="card-body">
-                <div class="form-group mb-5">
+                <div class="form-group mb-10">
                   <select id="filter-year" class="form-control">
                     <option value="">Semua</option>
                     @foreach ($tahun as $key => $value)
