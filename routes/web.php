@@ -65,6 +65,9 @@ Route::group(['middleware' => ['auth','admin']], function (){
     Route::post('/editmitra/{id}', 'Admin\DashboardController@editmitrasibengkel');
 
     Route::get('/markNotif', 'Admin\DashboardController@markNotif');
+
+    Route::get('/statusbarangadmin' , 'Admin\DashboardController@statusbarangadmin');
+
         
     Route::get('/symlink', function () {
         \Artisan::call('storage:link');
