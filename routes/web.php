@@ -103,6 +103,10 @@ Route::get('/logout', 'Auth\logoutController@logout');
 
 Route::get('mitra', 'inputmitraController@index');
 
+Route::get('pembelian', 'pembelianbarangController@index');
+
+Route::get('alamat', 'alamatController@index');
+
 
 // Route::get('barangdibayar', function(){
 //  return view ('barangdibayar');

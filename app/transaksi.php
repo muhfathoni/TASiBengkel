@@ -11,12 +11,12 @@ class transaksi extends Model
     
     public function user()
     {
-        $this->belongsTo('App\User','id_user');
+        return $this->belongsTo('App\User','id_user');
     }
 
-    public function barang()
+    public function barangtransaksi()
     {
-        $this->hasMany('App\transaksibarang','id_order');
+        return $this->hasMany('App\transaksibarang','id_order');
     }
 
 }

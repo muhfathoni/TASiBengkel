@@ -31,5 +31,9 @@ class produk extends Model
     public function jenis(){
     	return $this->belongsTo('App\jenis', 'jenis_id');
     }
+
+     public function pembelian(){
+        return $this->hasMany('App\pembelianbarang', 'produk_id');
+    }
     
 }

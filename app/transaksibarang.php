@@ -12,11 +12,11 @@ class transaksibarang extends Model
 
     public function order()
     {
-        $this->belongsTo('App\transaksi','id_order');
+        return $this->belongsTo('App\transaksi','id_order');
     }
 
     public function barang()
     {
-        $this->belongsTo('App\produk','id_barang');
+        return $this->belongsTo('App\produk','id_barang');
     }
 }

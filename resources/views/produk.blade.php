@@ -146,6 +146,10 @@ Produk
 								{{$prod->nama}}
 							</a>
 
+							<span class="block2-name dis-block s-text3 p-b-5">
+								Stok: {{$prod->stock}}
+							</span>
+
 							<span class="block2-price m-text6 p-r-5">
 								Rp{{number_format($prod->harga)}}
 							</span>

@@ -24,7 +24,8 @@ Cart
 						<th class="column-1"></th>
 						<th class="column-2">Product</th>
 						<th class="column-3">Price</th>
-						<th class="column-4" colspan="2">Action</th>
+						<th class="column-4">Quantity</th>
+						<th class="column-5" colspan="2">Action</th>
 					</tr>
 					
 					@php
@@ -38,29 +39,47 @@ Cart
 					@endphp
 
 					@foreach ($carts as $key => $cart)
-						<tr class="table-row">
-							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="{{url($cart->produk->gambar_b)}}" alt="IMG-PRODUCT">
+					<tr class="table-row">
+						<td class="column-1">
+							<div class="cart-img-product b-rad-4 o-f-hidden">
+								<img src="{{url($cart->produk->gambar_b)}}" alt="IMG-PRODUCT">
+							</div>
+						</td>
+						<td class="column-2">{{$cart->produk->nama}}</td>
+
+						<td class="column-3">Rp{{number_format($cart->produk->harga,2,',','.')}}</td>
+
+						<td class="column-4">
+							<div class="flex-w bo5 of-hidden w-size17">
+									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+									</button>
+
+									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+
+									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+									</button>
 								</div>
-							</td>
-							<td class="column-2">{{$cart->produk->nama}}</td>
-							<td class="column-3">Rp{{number_format($cart->produk->harga,2,',','.')}}</td>
-							<td class="column-4">
-								<input type="checkbox" onclick="updateTotal()" class="cb-item" value="{{$cart->produk->id}}" data-harga="{{$cart->produk->harga}}" checked>
-							</td>
-							<td class="column-5">
-								<button class="btn btn-sm btn-danger hapus-barang" type="button" id="{{$cart->produk->id}}" onclick="deleteFunction({{$cart->produk->id}})">
-									<i class="fa fa-trash" aria-hidden="true"></i> Hapus
-								</button>
-							</td>
-						</tr>
+						</td>
 
-						@php
+						<td class="column-5">
+							<input type="checkbox" onclick="updateTotal()" class="cb-item" value="{{$cart->produk->id}}" data-harga="{{$cart->produk->harga}}" checked>
+						</td>
 
-						$harga = $cart->produk->harga + $harga;
+						<td class="column-6">
+							<button class="btn btn-sm btn-danger hapus-barang" type="button" id="{{$cart->produk->id}}" onclick="deleteFunction({{$cart->produk->id}})">
+								<i class="fa fa-trash" aria-hidden="true"></i> Hapus
+							</button>
+						</td>
 
-						@endphp
+					</tr>
+
+					@php
+
+					$harga = $cart->produk->harga + $harga;
+
+					@endphp
 
 					@endforeach
 
@@ -69,7 +88,7 @@ Cart
 						<td class="column-2" id="total-bayar">Rp{{number_format($harga,2,',','.')}}</td>
 						<td class="column-3" colspan="2"><div class="size15 trans-0-4">
 							<!-- Button -->
-							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="pay-button">
+							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="checkout" onclick="checkout()">
 								Checkout
 							</button>
 						</div></td>
@@ -78,38 +97,8 @@ Cart
 				</table>
 			</div>
 		</div>
-
-		<!-- Total -->
-	<!-- 	<div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
-			<h5 class="m-text20 p-b-24">
-				Cart Totals
-			</h5>
-
-
-			<div class="flex-w flex-sb-m p-b-12">
-				<span class="s-text18 w-size19 w-full-sm">
-					Subtotal:
-				</span>
-
-				<span class="m-text21 w-size20 w-full-sm">
-					{{$harga}}
-				</span>
-			</div>
-
-
-			<div class="flex-w flex-sb-m p-t-26 p-b-30">
-				<span class="m-text22 w-size19 w-full-sm">
-					Total:
-				</span>
-
-				<span class="m-text21 w-size20 w-full-sm">
-					$39.00
-				</span>
-			</div> -->
-
-
-		</div>
 	</div>
+</div>
 </section>
 
 
@@ -154,7 +143,7 @@ Cart
 	var formatter = new Intl.NumberFormat('id-ID', {
 		style: 'currency',
 		currency: 'IDR',
-		});
+	});
 	var total = document.getElementById('total-bayar')
 
 	function updateTotal() {
@@ -182,8 +171,8 @@ Cart
 		if (harga > 0) {
 			console.log(harga)
 			$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				}
 			})
 
@@ -194,34 +183,8 @@ Cart
 		} else {
 			swal("Error", "Pilih minimal 1 (satu) barang", "warning");
 		}
-    };
+	};
 
-    //hapus
-
-	// $('.hapus-barang').on('click', function(){
-	// 		swal({
-	// 		title: "Are you sure?",
-	// 		text: "Once deleted, you will not be able to recover this product",
-	// 		icon: "warning",
-	// 		buttons: true,
-	// 		dangerMode: true,
-	// 	})
-	// 	.then((willDelete) => {
-	// 		if (willDelete) {
-	// 			$.get('viewcart/'+id, function(response){
-	// 				swal("Your cart has been deleted!", {
-	// 				icon: "success",
-
-	// 				tr_id.fadeOut(1000, function(){
-	// 					tr_id.remove;
-	// 				});
-	// 			});
-	// 			});
-	// 		} else {
-	// 			swal("Your imaginary file is safe!");
-	// 		}
-	// 	});
-	// })
 
 	function deleteFunction(id){
 		swal({
@@ -248,6 +211,30 @@ Cart
 		})
 	}
 
+	function checkout(){
+		swal({
+			title: "Payment",
+			text: "Silahkan transfer ke rekening Mandiri 1310013907474 a/n Muhammad Fathoni dan kirimkan bukti transfer ke sibengkel.bandung@gmail.com  ",
+			icon: "warning",
+			buttons: true,
+			// dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.get('booking/'+id, function(response){
+					swal("Your booking has been deleted!",{
+						icon: "success", 
+						buttons: true,
+					})
+					.then((deleted)=>{
+						window.location.reload();
+					});
+				})
+			} else {
+				swal("Your payment has been cancelled");
+			}
+		})
+	}
 
 </script>
 
