@@ -104,8 +104,11 @@ Route::get('/logout', 'Auth\logoutController@logout');
 Route::get('mitra', 'inputmitraController@index');
 
 Route::get('pembelian', 'pembelianbarangController@index');
+Route::post('pembelianbarang/insert', 'pembelianbarangController@store');
 
-Route::get('alamat', 'alamatController@index');
+Route::get('alamat', 'alamatController@index')->name('alamat');
+Route::post('alamat/insert', 'alamatController@store')->name('insertAlamat');
+
 
 
 // Route::get('barangdibayar', function(){

@@ -31,7 +31,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset ('vendor/noui/nouislider.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset ('css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset ('css/main.cs') }}s">
+	<link rel="stylesheet" type="text/css" href="{{ asset ('css/main.css') }}">
 	<!-- <script src="{{ asset ('vendor/jquery/jquery.min.js') }}"></script> -->
 
 	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>

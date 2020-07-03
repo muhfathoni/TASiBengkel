@@ -19,7 +19,7 @@ Booking
 	<div class="container">
 		<div class="form-group mx-auto col-sm-12 col-md-6">
 			<table class="table table-responsive col-6 mx-auto px-1 text-center">
-				<form method="POST" id="login" action="">
+				<form method="POST" id="login" action="{{route('insertAlamat')}}">
 					{{csrf_field()}}
 					<tr>
 						<td colspan="3">
@@ -45,7 +45,7 @@ Booking
 							:
 						</td>
 						<td>
-							<input type="text" name="namaPenerima" class="form-control">
+							<input type="text" name="alamat" class="form-control">
 						</td>
 						<tr>
 							<td colspan="3">

@@ -35,27 +35,29 @@ History Pembelian Barang
 						</th>
 					</tr>
 
+					@foreach ( $pembelian as pembelians )
 
 					<tr>
 						<td>
 
 						</td>
 						<td>
-							
+
 						</td>
 						<td>
-							
+
 						</td>
 						<td>
-							
+
 						</td>
 					</tr>
 
+					@endforeach
+					
 				</table>
 			</div>
 		</div>
 	</section>
-
 	@endsection
 
 	@push('script')

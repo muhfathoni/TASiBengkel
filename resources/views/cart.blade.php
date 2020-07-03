@@ -50,21 +50,21 @@ Cart
 						<td class="column-3">Rp{{number_format($cart->produk->harga,2,',','.')}}</td>
 
 						<td class="column-4">
-							<div class="flex-w bo5 of-hidden w-size17">
-									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+							<div class="flex-w bo5 of-hidden">
+									<!-- <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button>
+									</button> -->
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+									<input class="size8 m-text18 t-center" type="number" id="stock" name="num-product1" value="1" min="1" max="{{$cart->produk->stock}}">
 
-									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+									<!-- <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button>
+									</button> -->
 								</div>
 						</td>
 
 						<td class="column-5">
-							<input type="checkbox" onclick="updateTotal()" class="cb-item" value="{{$cart->produk->id}}" data-harga="{{$cart->produk->harga}}" checked>
+							<input type="checkbox" onclick="updateTotal()" class="cb-item" id="id_product" value="{{$cart->produk->id}}" data-harga="{{$cart->produk->harga}}>"
 						</td>
 
 						<td class="column-6">
@@ -147,10 +147,14 @@ Cart
 	var total = document.getElementById('total-bayar')
 
 	function updateTotal() {
+		const stock = parseInt(document.getElementById('stock').value)
 		var harga = 0
 		for (let index = 0; index < cb.length; index++) {
+			const hargaData = parseInt(cb[index].getAttribute('data-harga'))
+			const totalHarga = hargaData * stock
+			console.log(totalHarga)
 			if (cb[index].checked) {
-				harga += parseInt(cb[index].getAttribute('data-harga'))
+				harga += totalHarga
 			}
 		}
 		total.innerHTML = formatter.format(harga)
@@ -212,6 +216,13 @@ Cart
 	}
 
 	function checkout(){
+		var total = document.getElementById('total-bayar').innerHTML
+		var id_product = parseInt(document.getElementById('id_product').value)
+		var data = {
+			totalHarga: total,
+			produk_id: id_product	
+		}
+		console.log(data)
 		swal({
 			title: "Payment",
 			text: "Silahkan transfer ke rekening Mandiri 1310013907474 a/n Muhammad Fathoni dan kirimkan bukti transfer ke sibengkel.bandung@gmail.com  ",
@@ -219,15 +230,20 @@ Cart
 			buttons: true,
 			// dangerMode: true,
 		})
-		.then((willDelete) => {
-			if (willDelete) {
-				$.get('booking/'+id, function(response){
-					swal("Your booking has been deleted!",{
+		.then((checkout) => {
+			if (checkout) {
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				})
+				$.post('pembelianbarang/insert', data, function(response){
+					swal("Your booking has been saved!",{
 						icon: "success", 
 						buttons: true,
 					})
 					.then((deleted)=>{
-						window.location.reload();
+						window.location.replace("/alamat");
 					});
 				})
 			} else {
