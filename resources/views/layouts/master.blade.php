@@ -97,6 +97,15 @@
           </li>
         @endif
 
+        @if (\Auth::user()->usertype == 'superadmin')
+        <li class="statusbarangadmin ">
+          <a href="/statusbarangadmin">
+            <i class="now-ui-icons shopping_cart-simple"></i>
+            <p class="text-light">Status Barang</p>
+          </a>
+        </li>
+      @endif
+
           {{-- <li>
             <a href="./typography.html">
               <i class="now-ui-icons text_caps-small"></i>

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\jenis;
 use App\inputmitra;
 use App\Notifications\notif;
+use App\addtocart;
 
 class DashboardController extends Controller
 {
@@ -374,4 +375,16 @@ class DashboardController extends Controller
 
         return 0;
     }
+
+    public function statusbarangadmin(){
+
+        $users = User::all();
+        $cart = addtocart::all();
+        $products = produk::all();
+        
+        
+        
+        return view('admin.statusbarangadmin')->with('users', $users)->with('cart', $cart)->with('products', $products);
+    }
+
 }
