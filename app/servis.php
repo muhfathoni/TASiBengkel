@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class servis extends Model
 {
     protected $table = 'tb_servis';
-    protected $fillable = ['id_bengkel', 'nama_servis'];
+    protected $fillable = ['id_bengkel', 'nama_servis', 'harga'];
 
     public $timestamps = 'false';
 

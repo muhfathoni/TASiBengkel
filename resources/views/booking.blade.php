@@ -44,6 +44,7 @@ Booking
 					<th>Nama Bengkel</th>
 					<th>Jadwal</th>
 					<th>Jam</th>
+					<th>Harga</th>
 					<th>Action</th>
 				</tr>
 
@@ -61,6 +62,9 @@ Booking
 					</td>
 					<td>
 						{{$booking->jam}}
+					</td>
+					<td>
+						{{$booking->harga}}
 					</td>
 					<td>
 						<button class="btn btn-sm btn-danger hapus-barang" type="button" id="{{$booking->id}}" onclick="deleteFunction({{$booking->id}})">

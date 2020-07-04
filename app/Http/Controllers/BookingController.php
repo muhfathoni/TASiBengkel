@@ -118,10 +118,23 @@ class BookingController extends Controller
 
         $html = '';
 
+
         foreach ($servis as $row){
             $html .='<option value="'.$row->id.'">'.$row->nama_servis. '</option>';
         }
 
         return $html;
+    }
+
+    public function getHargaService($id) {
+        $servis = servis::where('id', $id)->get();
+        $harga = '';
+
+        foreach ($servis as $row) {
+            $harga .= 'Rp.'.$row->harga;
+        }
+
+
+        return $harga;
     }
 }

@@ -66,8 +66,9 @@ Route::group(['middleware' => ['auth','admin']], function (){
 
     Route::get('/markNotif', 'Admin\DashboardController@markNotif');
 
-    Route::get('/statusbarangadmin' , 'Admin\DashboardController@statusbarangadmin');
+    Route::get('/statusbarangadmin' , 'Admin\DashboardController@statusbarangadmin')->name('statusbarangadmin');
 
+    Route::get('/successOrder/{id}', 'Admin\DashboardController@sucessOrder')->name('successOrder');
         
     Route::get('/symlink', function () {
         \Artisan::call('storage:link');
@@ -83,11 +84,15 @@ Route::get('bookingservice', function(){
  return view ('bookingservice');
 });
 
+
+Route::get('getNotification', 'addtocartcontroller@getNotification')->name('getNotification');
+
 Route::post('/bookingservice/insert', 'bookingserviceController@store');
 Route::get('bookingservice', 'bookingserviceController@index')->middleware('checkbooking');
 
 Route::get('booking', 'BookingController@index')->name('booking')->middleware('checkbooking');
 Route::get('optionbooking/{id}', 'BookingController@namaservis');
+Route::get('gethargaservcie/{id}', 'BookingController@getHargaService');
 Route::get('booking/{id}', 'BookingController@destroy');
 
 Route::get('produk', 'produkController@index');

@@ -35,20 +35,22 @@ History Pembelian Barang
 						</th>
 					</tr>
 
-					@foreach ( $pembelian as pembelians )
-
+					@foreach ($pembelian as $pembelians)
 					<tr>
 						<td>
+							{{$pembelians->dataproduk->nama}}
+						</td>
+						<td>
+							<div class="col-lg-6 col-md-6 text-center">
+								<img src="{{$pembelians->dataproduk->gambar_b}}" class="img-fluid">
+							</div>
 
 						</td>
 						<td>
-
+							{{$pembelians->status}}
 						</td>
 						<td>
-
-						</td>
-						<td>
-
+							{!!$pembelians->totalHarga!!}
 						</td>
 					</tr>
 

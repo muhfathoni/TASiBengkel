@@ -60,13 +60,23 @@ Booking
 						</td>
 						<tr>
 							<td>
+								Harga
+							</td>
+							<td>
+								:
+							</td>
+							<td id='harga' class="text-left">
+							
+							</td>
+						</tr>
+						<tr>
+							<td>
 								Jadwal Servis
 							</td>
 							<td>
 								:
 							</td>
 							<td>
-
 								<input type="date" name="jadwalService" class="form-control">
 							</td>
 						</tr>
@@ -113,6 +123,16 @@ Booking
 			if (id!=''){
 				$.get('optionbooking/'+id, function(response){
 					$('#namaService').html(response)
+				})
+			}
+		})
+
+		$('#namaService').on('click', function(){
+			let id = $(this).val()
+
+			if(id != ''){
+				$.get('gethargaservcie/'+id, function(response){
+					$('#harga').html(response)
 				})
 			}
 		})

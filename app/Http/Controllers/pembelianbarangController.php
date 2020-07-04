@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\pembelianbarang;
+use App\addtocart;
 use Auth;
 
 class pembelianbarangController extends Controller
@@ -20,12 +21,15 @@ class pembelianbarangController extends Controller
 	public function store(Request $request)
 	{
 		$pembelian = new pembelianbarang();
+		$checkout = addtocart::where('user_id', Auth::user()->id);
 
 		$pembelian->customer_id = Auth::user()->id;
 		$pembelian->totalHarga = $request->totalHarga;
 		$pembelian->produk_id = $request->produk_id;
-		// dd($pembelian)
+		
+
 		$pembelian->save();
+		$checkout->delete();
 
 		return redirect()->route('alamat');
 	}

@@ -61,44 +61,44 @@ Cart
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button> -->
 								</div>
-						</td>
+							</td>
 
-						<td class="column-5">
-							<input type="checkbox" onclick="updateTotal()" class="cb-item" id="id_product" value="{{$cart->produk->id}}" data-harga="{{$cart->produk->harga}}>"
-						</td>
+							<td class="column-5">
+								<input type="checkbox" onclick="updateTotal()" class="cb-item" id="id_product" value="{{$cart->produk->id}}" data-harga="{{$cart->produk->harga}}>"
+							</td>
 
-						<td class="column-6">
-							<button class="btn btn-sm btn-danger hapus-barang" type="button" id="{{$cart->produk->id}}" onclick="deleteFunction({{$cart->produk->id}})">
-								<i class="fa fa-trash" aria-hidden="true"></i> Hapus
-							</button>
-						</td>
+							<td class="column-6">
+								<button class="btn btn-sm btn-danger hapus-barang" type="button" id="{{$cart->produk->id}}" onclick="deleteFunction({{$cart->produk->id}})">
+									<i class="fa fa-trash" aria-hidden="true"></i> Hapus
+								</button>
+							</td>
 
-					</tr>
+						</tr>
 
-					@php
+						@php
 
-					$harga = $cart->produk->harga + $harga;
+						$harga = $cart->produk->harga + $harga;
 
-					@endphp
+						@endphp
 
-					@endforeach
+						@endforeach
 
-					<tr>
-						<td class="column-1">Total</td>
-						<td class="column-2" id="total-bayar">Rp{{number_format($harga,2,',','.')}}</td>
-						<td class="column-3" colspan="2"><div class="size15 trans-0-4">
-							<!-- Button -->
-							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="checkout" onclick="checkout()">
-								Checkout
-							</button>
-						</div></td>
-					</tr>
+						<tr>
+							<td class="column-1">Total</td>
+							<td class="column-2" id="total-bayar">Rp{{number_format($harga,2,',','.')}}</td>
+							<td class="column-3" colspan="2"><div class="size15 trans-0-4">
+								<!-- Button -->
+								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="checkout" onclick="checkout()">
+									Checkout
+								</button>
+							</div></td>
+						</tr>
 
-				</table>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </section>
 
 

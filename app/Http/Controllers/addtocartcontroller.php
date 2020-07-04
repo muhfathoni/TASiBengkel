@@ -92,4 +92,10 @@ class addtocartcontroller extends Controller
         $carts = addtocart::with('tb_cart')->where('produk_id', $id)->where('user_id',Auth::user()->id)->delete();
         return redirect('/viewcart')->with('status', 'Data Berhasil DiHapus');
     }
+
+    public function getNotification(){
+        $cart = addtocart::all();
+
+        return $cart;
+    }
 }

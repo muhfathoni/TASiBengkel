@@ -13,6 +13,7 @@ use App\jenis;
 use App\inputmitra;
 use App\Notifications\notif;
 use App\addtocart;
+use App\pembelianbarang;
 
 class DashboardController extends Controller
 {
@@ -378,13 +379,27 @@ class DashboardController extends Controller
 
     public function statusbarangadmin(){
 
-        $users = User::all();
-        $cart = addtocart::all();
-        $products = produk::all();
+        // $users = User::all();
+        // $products = produk::all();
+        // $cart = addtocart::all();
         
+        $pembelianbarang = pembelianbarang::all();
+        return view('admin.statusbarangadmin')->with('pembelianbarang', $pembelianbarang);
         
-        
-        return view('admin.statusbarangadmin')->with('users', $users)->with('cart', $cart)->with('products', $products);
+        // return view('admin.statusbarangadmin')->with('users', $users)->with('cart', $cart)->with('products', $products);
+    }
+
+    public function sucessOrder($id){
+        $pembelian = pembelianbarang::findOrFail($id);
+
+        try{
+            $pembelian->status = "Success";
+            $pembelian->update();
+        }catch (Exception $exception){
+            dd($exception);
+        }
+
+        return redirect()->route('statusbarangadmin');
     }
 
 }

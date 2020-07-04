@@ -31,18 +31,25 @@
                 </li>
                 
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="/logout" style="color: #000000"> Logout </a>
+                    <a class="nav-link js-scroll-trigger" href="/logout" style="color: #000000"> Logout </a>
                 </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="/viewcart">
-                        <img src="{{ asset ('img/cart.png') }}" class="header-icon1 js-show-header-dropdown" alt="ICON">
+                        <div class="header-wrapicon2">
+                            <img src="{{ asset ('img/cart.png') }}" class="header-icon1 js-show-header-dropdown" alt="ICON">
+                            @if($notif->isEmpty())
+                            @else
+                            <span class="header-icons-noti" id="notification">!</span>
+                            @endif
+                        </div>
                     </a>
                 </li>
                 @else
 
                 <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="/login" style="color: #000000">Login</a>
+                    <a class="nav-link js-scroll-trigger" href="/login" style="color: #000000">Login</a>
                 </li>
                 @endif
             </ul>
@@ -51,4 +58,3 @@
 </div>
 
 </nav>
-
