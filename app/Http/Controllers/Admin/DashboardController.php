@@ -63,10 +63,11 @@ class DashboardController extends Controller
             $total_booking = Booking::count();
             $tahunArray = $this->daftarTahun();
             $total_pendapatan = Booking::sum('revenue') * 0.05;
+            $jumlahbarang = produk::distinct('nama')->count();
 
         }
                
-        return view('admin.dashboard')->with('tahun',$tahunArray)->with('cust',$jumlah_customer)->with('booking',$total_booking)->with('total_pendapatan',$total_pendapatan);
+        return view('admin.dashboard')->with('tahun',$tahunArray)->with('cust',$jumlah_customer)->with('booking',$total_booking)->with('total_pendapatan',$total_pendapatan)->with('jumlahbarang',$jumlahbarang);
     }
 
 

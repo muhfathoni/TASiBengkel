@@ -92,6 +92,16 @@
               </div>
             </div>
           </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <a href="/inputbarang">
+              <h5 class="text-dark">Jumlah Barang</h5>
+              </a>
+              <h5 class="font-weight-bold">{{$jumlahbarang}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
               <div class="card-body">
                 <div class="form-group mb-10">
                   <select id="filter-year" class="form-control">
