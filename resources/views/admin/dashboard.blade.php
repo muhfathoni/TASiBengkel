@@ -60,8 +60,8 @@
             </div>
           </div>
           @endif --}}
-          
-          <div class="col-md-12">
+          @if (\Auth::user()->usertype == 'admin')
+          <div class="col-md-6">
             <div class="card-deck mb-3">
               <div class="card">
                 <div class="card-body text-center">
@@ -69,7 +69,27 @@
                   <h5 class="font-weight-bold">{{$cust}}</h5>
                 </div>
               </div>
-
+              @endif
+              @if (\Auth::user()->usertype == 'superadmin')
+          <div class="col-md-6">
+            <div class="card-deck mb-3">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5>Jumlah User {{\Auth::user()->name}} </h5>
+                  <h5 class="font-weight-bold">{{$cust}}</h5>
+                </div>
+              </div>
+              @endif
+              @if (\Auth::user()->usertype == 'superadmin')
+              <div class="col-md-6">
+                <div class="card-deck mb-3">
+                  <div class="card">
+                    <div class="card-body text-center">
+                      <h5>Jumlah Mitra  {{\Auth::user()->name}} </h5>
+                      <h5 class="font-weight-bold">{{$cust}}</h5>
+                    </div>
+                  </div>
+                  @endif
               <div class="card">
                 <div class="card-body text-center">
                   <a href="/bookingadmin">
@@ -80,14 +100,26 @@
               </div>
             </div>
           </div>
-           <div class="col-md-12">
+           <div class="col-md-6">
             <div class="card-deck mb-3">
               <div class="card">
                 <div class="card-body text-center">
                   <a href="/revenue">
-                  <h5 class="text-dark">Total Pendapatan</h5>
+                  <h5 class="text-dark">Profit</h5>
                 </a>
                   <h5 class="font-weight-bold">Rp{{number_format($total_pendapatan,2,',','.')}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-deck mb-3">
+              <div class="card">
+                <div class="card-body text-center">
+                  <a href="/revenue">
+                  <h5 class="text-dark">Revenue</h5>
+                </a>
+                  <h5 class="font-weight-bold">Rp{{number_format($jumlahpendapatan,2,',','.')}}</h5>
                 </div>
               </div>
             </div>
