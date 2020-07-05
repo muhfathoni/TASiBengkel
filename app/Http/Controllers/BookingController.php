@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\servis;
+use App\addtocart;
 
 class BookingController extends Controller
 {
@@ -20,10 +21,14 @@ class BookingController extends Controller
         $booking = Booking::where('userid',Auth::user()->id)->get();
         $bengkels = User::where('usertype', 'admin')->get();
 
+        $notif = addtocart::where('user_id', Auth::user()->id)->get();
+
+
         $data['result'] = $booking ;
 
         // dd($booking);
-        return view ('booking')->with ("booking", $booking)->with ('bengkels', $bengkels);
+        // return view ('booking')->with ("booking", $booking)->with ('bengkels', $bengkels);
+        return view ('booking', compact('notif', 'booking', 'bengkels'));
     }
 
     /**
@@ -109,32 +114,32 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-       $booking = Booking::with('tb_booking')->where('id',$id)->delete();
-        return redirect('/booking')->with('status', 'Data Berhasil DiHapus');
+     $booking = Booking::with('tb_booking')->where('id',$id)->delete();
+     return redirect('/booking')->with('status', 'Data Berhasil DiHapus');
+ }
+
+ public function namaservis($id){
+    $servis = servis::where('id_bengkel', $id)->get();
+
+    $html = '';
+
+
+    foreach ($servis as $row){
+        $html .='<option value="'.$row->id.'">'.$row->nama_servis. '</option>';
     }
 
-    public function namaservis($id){
-        $servis = servis::where('id_bengkel', $id)->get();
+    return $html;
+}
 
-        $html = '';
+public function getHargaService($id) {
+    $servis = servis::where('id', $id)->get();
+    $harga = '';
 
-
-        foreach ($servis as $row){
-            $html .='<option value="'.$row->id.'">'.$row->nama_servis. '</option>';
-        }
-
-        return $html;
+    foreach ($servis as $row) {
+        $harga .= 'Rp.'.$row->harga;
     }
 
-    public function getHargaService($id) {
-        $servis = servis::where('id', $id)->get();
-        $harga = '';
 
-        foreach ($servis as $row) {
-            $harga .= 'Rp.'.$row->harga;
-        }
-
-
-        return $harga;
-    }
+    return $harga;
+}
 }

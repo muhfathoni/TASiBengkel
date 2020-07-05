@@ -7,6 +7,7 @@ use Auth;
 use App\User;
 use App\servis;
 use App\Booking;
+use App\addtocart;
 
 class bookingserviceController extends Controller
 {
@@ -18,39 +19,42 @@ class bookingserviceController extends Controller
                 // $data['result'] = $booking ;
 
                 // dd($booking);
-    return view ('bookingservice')->with ('bengkels', $bengkels);
-}
 
-public function namaservis($id){
+    $notif = addtocart::where('user_id', Auth::user()->id)->get();
+    return view ('bookingservice', compact('notif', 'bengkels'));
+    // return view ('bookingservice')->with ('bengkels', $bengkels);
+  }
+
+  public function namaservis($id){
     $servis = servis::where('id_bengkel', $id)->get();
 
     $html = '';
 
     foreach ($servis as $row){
-        $html .='<option value="'.$row->id.'">'.$row->nama_servis. '</option>';
+      $html .='<option value="'.$row->id.'">'.$row->nama_servis. '</option>';
     }
 
     return $html;
-}
+  }
 
-public function store(Request $request)
-{
+  public function store(Request $request)
+  {
 
-        $this->validate($request, [
-        'jadwalService'        => 'required', 
-        'jamService'           => 'required'
+    $this->validate($request, [
+      'jadwalService'        => 'required', 
+      'jamService'           => 'required'
     ]);
 
-  $booking = new Booking();
+    $booking = new Booking();
 
-  $booking->userid = Auth::user()->id;
-  $booking->id_bengkel = $request->bengkel;
-  $booking->jenis_service = $request->namaService;
-  $booking->jadwal = $request->jadwalService;
-  $booking->jam = $request->jamService;
+    $booking->userid = Auth::user()->id;
+    $booking->id_bengkel = $request->bengkel;
+    $booking->jenis_service = $request->namaService;
+    $booking->jadwal = $request->jadwalService;
+    $booking->jam = $request->jamService;
 
-  $booking->save();
+    $booking->save();
 
-  return redirect()->route('booking');
-}
+    return redirect()->route('booking');
+  }
 }

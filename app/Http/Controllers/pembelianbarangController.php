@@ -14,8 +14,11 @@ class pembelianbarangController extends Controller
 		$pembelian = pembelianbarang::where('customer_id',Auth::user()->id)->get();
 		$data['result'] = $pembelian;
 
+		$notif = addtocart::where('user_id', Auth::user()->id)->get();
+		return view ('pembelian', compact('notif', 'pembelian'));
+
 		// dd($data);
-		return view ('pembelian')->with("pembelian", $pembelian);
+		// return view ('pembelian')->with("pembelian", $pembelian);
 	}
 
 	public function store(Request $request)
