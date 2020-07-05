@@ -25,13 +25,18 @@ class produkController extends Controller
         }
         //print dari tb_produk
         
+        $notif = addtocart::where('user_id', Auth::user()->id)->get();
+
+        // dd($booking);
+        // return view ('booking')->with ("booking", $booking)->with ('bengkels', $bengkels);
 
         //membuat api
         $data['title'] = 'API produk';
         $data['result'] = $produk;
 
         // dd($produk);
-        return view ('produk')->with ("produk", $produk);
+        // return view ('produk')->with ("produk", $produk);
+        return view ('produk', compact('notif', 'produk'));
     }
 
     /**

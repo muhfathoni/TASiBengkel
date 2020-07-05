@@ -23,7 +23,10 @@ class addtocartcontroller extends Controller
         // $data['title'] = 'API cart';
         // $data['result'] = $cart;
 
-        return view ('cart')->with ("carts", $carts);
+        $notif = addtocart::where('user_id', Auth::user()->id)->get();
+        return view ('cart', compact('notif', 'carts'));
+
+        // return view ('cart')->with ("carts", $carts);
     }
 
     /**
