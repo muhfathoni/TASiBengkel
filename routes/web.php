@@ -23,13 +23,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-<<<<<<< HEAD
-// Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'HomeController@index')->name('home');
-=======
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/', 'HomeController@index')->name('home');
->>>>>>> 84dc62b8c573030b9f885cfb2e2259e3c0f4f562
 
 Auth::routes();
 
@@ -76,7 +71,11 @@ Route::group(['middleware' => ['auth','admin']], function (){
 
     Route::get('/successOrder/{id}', 'Admin\DashboardController@sucessOrder')->name('successOrder');
 
-    // Route::get('/jumlahbarang','Admin\DashboardController@jumlahbarang' );
+    // Route::get('/stockbarang','Admin\DashboardController@stockbarang' );
+
+    // Route::get('/jumlahpendapatan','Admin\DashboardController@jumlahpendapatan' );
+
+    // Route::get('/jumlahmitra','Admin\DashboardController@jumlahmitra' );
         
     Route::get('/symlink', function () {
         \Artisan::call('storage:link');

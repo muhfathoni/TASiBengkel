@@ -62,17 +62,20 @@ class DashboardController extends Controller
             $jumlah_customer = Booking::distinct('userid')->count();
             $total_booking = Booking::count();
             $tahunArray = $this->daftarTahun();
-            $total_pendapatan = Booking::sum('revenue') * 0.05;
-            $jumlahbarang = produk::distinct('nama')->count();
+            $total_pendapatan = Booking::sum('revenue') * 0.05;  
+            $stockbarang = produk::distinct('id')->count();
             $jumlahpendapatan = Booking::sum('revenue');
-            
-
+            $jumlahmitra = inputmitra::count('nama');
         }
                
-        return view('admin.dashboard')->with('tahun',$tahunArray)->with('cust',$jumlah_customer)->with('booking',$total_booking)->with('total_pendapatan',$total_pendapatan)->with('jumlahbarang',$jumlahbarang)->with('jumlahpendapatan',$jumlahpendapatan);
+        return view('admin.dashboard')->with('tahun',$tahunArray)->with('cust',$jumlah_customer)->with('booking',$total_booking)->with('total_pendapatan',$total_pendapatan);
+        
+        // errornya disini nes, gue bingung kalo ini ditaro direturn view atas vespuci atau vsd error, kalo gue pisahin return view baru, yang error superadminnya. Blade nya udah gue comment in nes di dashboard.blade
+        // ->with('stockbarang',$stockbarang)->with('jumlahpendapatan',$jumlahpendapatan)->with('jumlahmitra',$jumlahmitra);
+        
     }
 
-
+   
     public function booking()
     {
         // $users = User::all();

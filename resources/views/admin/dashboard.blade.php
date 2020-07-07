@@ -77,17 +77,14 @@
                 </div>
               </div>
               </div>
-              @endif
-      
-              @if (\Auth::user()->usertype == 'superadmin')
-              <div class="col-md-3">
+              {{-- <div class="col-md-3">
               <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
                 <div class="card-header">Jumlah Mitra {{\Auth::user()->name}} </div>
                 <div class="card-body">
-                  <h5>{{$cust}} </h5>
+                  <h5>{{$jumlahmitra}} </h5>
                 </div>
               </div>
-              </div>
+              </div> --}}
               @endif
              
               <div class="col-md-3">
@@ -99,13 +96,14 @@
               </div>
               </div>
               <div class="col-md-3">
-              <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Profit {{\Auth::user()->name}} </div>
-                <div class="card-body">
-                  <h5>Rp{{number_format($total_pendapatan,2,',','.')}}</h5>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Profit {{\Auth::user()->name}} </div>
+                  <div class="card-body">
+                    <h5>Rp{{number_format($total_pendapatan,2,',','.')}}</h5>
+                  </div>
                 </div>
-              </div>
-              </div>
+                </div>     
+              {{-- @if (\Auth::user()->usertype == 'superadmin')
               <div class="col-md-3">
                 <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                   <div class="card-header">Revenue {{\Auth::user()->name}} </div>
@@ -113,18 +111,16 @@
                     <h5>Rp{{number_format($jumlahpendapatan,2,',','.')}}</h5>
                   </div>
                 </div>
-                </div>
-
-                @if (\Auth::user()->usertype == 'superadmin')
+                </div>     
                 <div class="col-md-3">
                   <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Jumlah Barang {{\Auth::user()->name}} </div>
+                    <div class="card-header">Stock Barang {{\Auth::user()->name}} </div>
                     <div class="card-body">
-                      <h5>{{$jumlahbarang}} </h5>
+                      <h5>{{$stockbarang}} </h5>
                     </div>
                   </div>
                   </div>
-                @endif
+                @endif --}}
       
               <div class="card-body">
                 <div class="form-group mb-3">
