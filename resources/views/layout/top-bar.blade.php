@@ -34,7 +34,6 @@
                     <a class="nav-link js-scroll-trigger" href="/logout" style="color: #000000"> Logout </a>
                 </li>
 
-
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="/viewcart">
                         <div class="header-wrapicon2">
@@ -44,6 +43,12 @@
                             <span class="header-icons-noti" id="notification">!</span>
                             @endif
                         </div>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link js-scroll-trigger">
+                        <img src= "{{ asset ('img/icon-header-01.png') }}" class="header-icon1" alt="ICON">
                     </a>
                 </li>
                 @else

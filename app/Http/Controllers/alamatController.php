@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\alamat;
 use Auth;
+use App\addtocart;
 
 class alamatController extends Controller
 {
-	public function index(Request $Request)
+	public function index()
 	{   
-		return view ('alamat');
+		$notif = addtocart::where('user_id', Auth::user()->id)->get();
+		return view ('alamat', compact('notif'));
+
 	}
 
 	public function store(Request $request)
@@ -23,6 +26,13 @@ class alamatController extends Controller
 		// dd($pembelian)
 		$alamat->save();
 
-		return redirect()->route('pembelian');
+		return redirect()->route('home');
 	}
+
+	public function profile(){
+		$alamat = alamat::where('customer_id', Auth::user()->id)->get();
+		$notif = addtocart::where('user_id', Auth::user()->id)->get();
+		return view ('profile', compact('alamat', 'notif'));
+	}
+
 }
