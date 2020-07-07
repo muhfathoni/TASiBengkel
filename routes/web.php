@@ -23,8 +23,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+<<<<<<< HEAD
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
+=======
+Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
+>>>>>>> 84dc62b8c573030b9f885cfb2e2259e3c0f4f562
 
 Auth::routes();
 
@@ -119,6 +124,8 @@ Route::post('pembelianbarang/insert', 'pembelianbarangController@store');
 
 Route::get('alamat', 'alamatController@index')->name('alamat');
 Route::post('alamat/insert', 'alamatController@store')->name('insertAlamat');
+
+Route::get('profile', 'alamatController@profile');
 
 
 

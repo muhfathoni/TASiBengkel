@@ -9,7 +9,7 @@ Booking
 <section style="background: url('img/background-mitra.jpg'); height: 300px;">
 	<div class="text-center text-white" style="text-shadow: #0b0b0b 3px 3px">
 		<h1 class="text-uppercase">
-			<strong>Data Pembelian</strong>
+			<strong>Alamat</strong>
 		</h1>
 	</div>
 </section>
@@ -23,7 +23,7 @@ Booking
 					{{csrf_field()}}
 					<tr>
 						<td colspan="3">
-							Silahkan transfer ke rekening Mandiri 1310013907474 a/n Muhammad Fathoni dan kirimkan bukti transfer ke sibengkel.bandung@gmail.com
+							Alamat akan digunakan sebagai alamat pengantaran barang yang telah dipesan.
 						</td>
 					</tr>
 					<tr>
