@@ -65,6 +65,7 @@ class DashboardController extends Controller
             $total_pendapatan = Booking::sum('revenue') * 0.05;
             $jumlahbarang = produk::distinct('nama')->count();
             $jumlahpendapatan = Booking::sum('revenue');
+            
 
         }
                

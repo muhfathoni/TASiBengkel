@@ -10,6 +10,7 @@
 @section('content')
 
 <div class="row">
+        @if (\Auth::user()->usertype == 'admin')
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
@@ -53,89 +54,80 @@
               </div>
             </div>
           </div>
-         {{-- @if (\Auth::user()->usertype == 'superadmin') 
-          <div class="col-md-12 mb-3">
-            <div class="card">
-              testestes
-            </div>
-          </div>
-          @endif --}}
+        @endif
+         
           @if (\Auth::user()->usertype == 'admin')
-          <div class="col-md-6">
-            <div class="card-deck mb-3">
-              <div class="card">
-                <div class="card-body text-center">
-                  <h5>Jumlah Customer  {{\Auth::user()->name}} </h5>
-                  <h5 class="font-weight-bold">{{$cust}}</h5>
+          <div class="col-md-3">
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Jumlah Customer {{\Auth::user()->name}} </div>
+                <div class="card-body">
+                  <h5>{{$cust}} </h5>
                 </div>
               </div>
-              @endif
-              @if (\Auth::user()->usertype == 'superadmin')
-          <div class="col-md-6">
-            <div class="card-deck mb-3">
-              <div class="card">
-                <div class="card-body text-center">
-                  <h5>Jumlah User {{\Auth::user()->name}} </h5>
-                  <h5 class="font-weight-bold">{{$cust}}</h5>
-                </div>
               </div>
               @endif
+
+              
               @if (\Auth::user()->usertype == 'superadmin')
-              <div class="col-md-6">
-                <div class="card-deck mb-3">
-                  <div class="card">
-                    <div class="card-body text-center">
-                      <h5>Jumlah Mitra  {{\Auth::user()->name}} </h5>
-                      <h5 class="font-weight-bold">{{$cust}}</h5>
+              <div class="col-md-3">
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Jumlah User {{\Auth::user()->name}} </div>
+                <div class="card-body">
+                  <h5>{{$cust}} </h5>
+                </div>
+              </div>
+              </div>
+              @endif
+      
+              @if (\Auth::user()->usertype == 'superadmin')
+              <div class="col-md-3">
+              <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Jumlah Mitra {{\Auth::user()->name}} </div>
+                <div class="card-body">
+                  <h5>{{$cust}} </h5>
+                </div>
+              </div>
+              </div>
+              @endif
+             
+              <div class="col-md-3">
+              <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">Total Booking {{\Auth::user()->name}} </div>
+                <div class="card-body">
+                  <h5>{{$booking}} </h5>
+                </div>
+              </div>
+              </div>
+              <div class="col-md-3">
+              <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Profit {{\Auth::user()->name}} </div>
+                <div class="card-body">
+                  <h5>Rp{{number_format($total_pendapatan,2,',','.')}}</h5>
+                </div>
+              </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Revenue {{\Auth::user()->name}} </div>
+                  <div class="card-body">
+                    <h5>Rp{{number_format($jumlahpendapatan,2,',','.')}}</h5>
+                  </div>
+                </div>
+                </div>
+
+                @if (\Auth::user()->usertype == 'superadmin')
+                <div class="col-md-3">
+                  <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Jumlah Barang {{\Auth::user()->name}} </div>
+                    <div class="card-body">
+                      <h5>{{$jumlahbarang}} </h5>
                     </div>
                   </div>
-                  @endif
-              <div class="card">
-                <div class="card-body text-center">
-                  <a href="/bookingadmin">
-                  <h5 class="text-dark">Total Booking</h5>
-                  </a>
-                  <h5 class="font-weight-bold">{{$booking}}</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-           <div class="col-md-6">
-            <div class="card-deck mb-3">
-              <div class="card">
-                <div class="card-body text-center">
-                  <a href="/revenue">
-                  <h5 class="text-dark">Profit</h5>
-                </a>
-                  <h5 class="font-weight-bold">Rp{{number_format($total_pendapatan,2,',','.')}}</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card-deck mb-3">
-              <div class="card">
-                <div class="card-body text-center">
-                  <a href="/revenue">
-                  <h5 class="text-dark">Revenue</h5>
-                </a>
-                  <h5 class="font-weight-bold">Rp{{number_format($jumlahpendapatan,2,',','.')}}</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body text-center">
-              <a href="/inputbarang">
-              <h5 class="text-dark">Jumlah Barang</h5>
-              </a>
-              <h5 class="font-weight-bold">{{$jumlahbarang}}</h5>
-            </div>
-          </div>
-        </div>
-      </div>
+                  </div>
+                @endif
+      
               <div class="card-body">
-                <div class="form-group mb-10">
+                <div class="form-group mb-3">
                   <select id="filter-year" class="form-control">
                     <option value="">Semua</option>
                     @foreach ($tahun as $key => $value)
@@ -183,9 +175,7 @@
               var el = document.getElementById('chart_div')
               el.innerHTML = "No Data"
             }
-            
-
-            
+                
           },
           error: function(){
             alert("Terjadi kesalahan saat mengambil data\nSilahkan coba beberapa saat lagi atau kontak penyelia situs")
