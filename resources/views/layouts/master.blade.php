@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-        @yield('title')
+    @yield('title')
 
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -40,7 +40,7 @@
           <li>
             <a href="/dashboard">
               <i class="now-ui-icons design_app"></i>
-           
+
               <p class="text-light">Home</p>
             </a>
           </li>
@@ -70,126 +70,135 @@
           </a>
         </li>
 
-          <li> 
-            <li class="booking">
+        <li> 
+          <li class="booking">
             {{-- <li class="active"> --}}
-            <a href="/bookingadmin">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p class="text-light">Booking List</p>
-            </a>
-          </li>
+              <a href="/bookingadmin">
+                <i class="now-ui-icons design_bullet-list-67"></i>
+                <p class="text-light">Booking List</p>
+              </a>
+            </li>
 
-          @if (\Auth::user()->usertype == 'superadmin')
+            @if (\Auth::user()->usertype == 'superadmin')
             <li class="inputbarang ">
               <a href="/inputbarang">
                 <i class="now-ui-icons shopping_tag-content"></i>
                 <p class="text-light">Input Barang</p>
               </a>
             </li>
-          @endif
-          
-          @if (\Auth::user()->usertype == 'superadmin')
-          <li class="inputmitra ">
-            <a href="/inputmitra">
-              <i class="now-ui-icons ui-1_settings-gear-63"></i>
-              <p class="text-light">Input Mitra</p>
-            </a>
-          </li>
-        @endif
+            @endif
 
-        @if (\Auth::user()->usertype == 'superadmin')
-        <li class="statusbarangadmin ">
-          <a href="/statusbarangadmin">
-            <i class="now-ui-icons shopping_cart-simple"></i>
-            <p class="text-light">Status Barang</p>
-          </a>
-        </li>
-      @endif
-
-          {{-- <li>
-            <a href="./typography.html">
-              <i class="now-ui-icons text_caps-small"></i>
-              <p>Typography</p>
-            </a>
-          </li> --}}
-          @if (\Auth::user()->usertype == 'admin')
-          <li class="contact">
-            <a href="www.gmail.com">
-              <i class="now-ui-icons tech_mobile"></i>
-              <p class="text-light">Contact Us</p>
-            </a>
-          </li>
-          @endif
-        </ul>
-      </div>
-    </div>
-    <div class="main-panel" id="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            {{-- <a class="navbar-brand" href="#pablo">Table List</a> --}}
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  <i class="now-ui-icons media-2_sound-wave"> </i> 
-                <span class="badge badge-danger" id="notif-count">{{\Auth::user()->unreadNotifications->count() }}</span>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                      @foreach (\Auth::user()->unreadNotifications as $notification)
-                    <li class="list-group-item">Mitra <b>{{ $notification->data['nama']}}</b> menyelesaikan <b>{{ $notification->data['jenis_service'] }}</b> sebesar <b>Rp{{ number_format($notification->data['revenue'],2,',','.') }}</b> pada <b>{{ \Carbon\Carbon::parse($notification->created_at)->setTimezone('Asia/Jakarta')->format('H:i d/m/Y') }}</b></b></li>
-                      @endforeach
-                      
-                    </ul>
-                  </div>
-              </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div>
+            @if (\Auth::user()->usertype == 'superadmin')
+            <li class="inputmitra ">
+              <a href="/inputmitra">
+                <i class="now-ui-icons ui-1_settings-gear-63"></i>
+                <p class="text-light">Input Mitra</p>
+              </a>
             </li>
+            @endif
+
+            @if (\Auth::user()->usertype == 'superadmin')
+            <li class="statusbarangadmin ">
+              <a href="/statusbarangadmin">
+                <i class="now-ui-icons shopping_cart-simple"></i>
+                <p class="text-light">Status Barang</p>
+              </a>
+            </li>
+            @endif
+
+            @if (\Auth::user()->usertype == 'superadmin')
+            <li class="alamatpengiriman ">
+              <a href="/alamatpengiriman">
+                <i class="now-ui-icons users_single-02"></i>
+                <p class="text-light">Data Customer</p>
+              </a>
+            </li>
+            @endif
+
+            {{-- <li>
+              <a href="./typography.html">
+                <i class="now-ui-icons text_caps-small"></i>
+                <p>Typography</p>
+              </a>
+            </li> --}}
+            @if (\Auth::user()->usertype == 'admin')
+            <li class="contact">
+              <a href="www.gmail.com">
+                <i class="now-ui-icons tech_mobile"></i>
+                <p class="text-light">Contact Us</p>
+              </a>
+            </li>
+            @endif
+          </ul>
+        </div>
+      </div>
+      <div class="main-panel" id="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <div class="navbar-toggle">
+                <button type="button" class="navbar-toggler">
+                  <span class="navbar-toggler-bar bar1"></span>
+                  <span class="navbar-toggler-bar bar2"></span>
+                  <span class="navbar-toggler-bar bar3"></span>
+                </button>
+              </div>
+              {{-- <a class="navbar-brand" href="#pablo">Table List</a> --}}
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-bar navbar-kebab"></span>
+              <span class="navbar-toggler-bar navbar-kebab"></span>
+              <span class="navbar-toggler-bar navbar-kebab"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+              <form>
+                <div class="input-group no-border">
+                  <input type="text" value="" class="form-control" placeholder="Search...">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="now-ui-icons ui-1_zoom-bold"></i>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <i class="now-ui-icons media-2_sound-wave"> </i> 
+                    <span class="badge badge-danger" id="notif-count">{{\Auth::user()->unreadNotifications->count() }}</span>
+                    <p>
+                      <span class="d-lg-none d-md-block">Stats</span>
+                    </p>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="card" style="width: 18rem;">
+                      <ul class="list-group list-group-flush">
+                        @foreach (\Auth::user()->unreadNotifications as $notification)
+                        <li class="list-group-item">Mitra <b>{{ $notification->data['nama']}}</b> menyelesaikan <b>{{ $notification->data['jenis_service'] }}</b> sebesar <b>Rp{{ number_format($notification->data['revenue'],2,',','.') }}</b> pada <b>{{ \Carbon\Carbon::parse($notification->created_at)->setTimezone('Asia/Jakarta')->format('H:i d/m/Y') }}</b></b></li>
+                        @endforeach
+
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}
+                  </a>
+
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                  </form>
+                </div>
+              </li>
               {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="now-ui-icons location_world"></i>
@@ -217,13 +226,13 @@
       </nav>
       <!-- End Navbar -->
 
-     
+
 
       <div class="panel-header panel-header-sm">
       </div>
       <div class="content">
 
-            @yield('content')
+        @yield('content')
         
       </div>
       <footer class="footer">
@@ -247,7 +256,7 @@
               </li>
             </ul>
           </nav>
-         
+
         </div>
       </footer>
     </div>

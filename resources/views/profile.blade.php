@@ -36,6 +36,28 @@ Booking
 				</tr>
 				<tr>
 					<td>
+						Email
+					</td>
+					<td>
+						:
+					</td>
+					<td>
+						{{$alamats->alamatcustomer->email}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						No Hp
+					</td>
+					<td>
+						:
+					</td>
+					<td>
+						{{$alamats->alamatcustomer->phone}}
+					</td>
+				</tr>
+				<tr>
+					<td>
 						Alamat
 					</td>
 					<td>
@@ -44,8 +66,9 @@ Booking
 					<td>
 						{{$alamats->alamat}}
 					</td>
-					@endforeach
 				</tr>
+
+				@endforeach
 
 				@if(empty($alamats))
 				<tr>

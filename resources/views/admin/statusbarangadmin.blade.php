@@ -81,10 +81,6 @@ Status Barang
             </tr>
             @endforeach
             
-            @foreach ($alamatpengiriman  as $row)
-            <td>{{ $row->alamatcustomer->alamat }}</td>
-                
-            @endforeach
           </tbody>
 
         </table>

@@ -47,7 +47,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a href="#" class="nav-link js-scroll-trigger">
+                    <a href="/profile" class="nav-link js-scroll-trigger">
                         <img src= "{{ asset ('img/icon-header-01.png') }}" class="header-icon1" alt="ICON">
                     </a>
                 </li>

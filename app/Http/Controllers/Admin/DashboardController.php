@@ -418,7 +418,7 @@ class DashboardController extends Controller
     {
         $alamatpengiriman = alamat::all();
 
-        return view('admin.statusbarangadmin')->with('alamatpengiriman', $alamatpengiriman);
+        return view('admin.customer')->with('alamatpengiriman', $alamatpengiriman);
 
         
     }
