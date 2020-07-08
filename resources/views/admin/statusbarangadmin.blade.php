@@ -58,6 +58,7 @@ Status Barang
               <th>Gambar</th>
               <th>Harga</th>
               <th>Status</th>
+              <th>Alamat</th>
             </thead>
             <tbody>
               @foreach ($pembelianbarang as $row)
@@ -78,6 +79,11 @@ Status Barang
                 </a>
               </td>
             </tr>
+            @endforeach
+            
+            @foreach ($alamatpengiriman  as $row)
+            <td>{{ $row->alamatcustomer->alamat }}</td>
+                
             @endforeach
           </tbody>
 

@@ -12,4 +12,5 @@ class alamat extends Model
     public function alamatcustomer(){
     	return $this->belongsTo('App\User', 'customer_id');
     }
+    
 }

@@ -71,12 +71,9 @@ Route::group(['middleware' => ['auth','admin']], function (){
 
     Route::get('/successOrder/{id}', 'Admin\DashboardController@sucessOrder')->name('successOrder');
 
-    // Route::get('/stockbarang','Admin\DashboardController@stockbarang' );
+    Route::get('/alamatpengiriman', 'Admin\DashboardController@alamatpengiriman');
 
-    // Route::get('/jumlahpendapatan','Admin\DashboardController@jumlahpendapatan' );
-
-    // Route::get('/jumlahmitra','Admin\DashboardController@jumlahmitra' );
-        
+    
     Route::get('/symlink', function () {
         \Artisan::call('storage:link');
         });

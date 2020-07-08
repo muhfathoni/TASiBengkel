@@ -14,6 +14,7 @@ use App\inputmitra;
 use App\Notifications\notif;
 use App\addtocart;
 use App\pembelianbarang;
+use App\alamat;
 
 class DashboardController extends Controller
 {
@@ -413,4 +414,12 @@ class DashboardController extends Controller
         return redirect()->route('statusbarangadmin');
     }
 
+    public function alamatpengiriman()
+    {
+        $alamatpengiriman = alamat::all();
+
+        return view('admin.statusbarangadmin')->with('alamatpengiriman', $alamatpengiriman);
+
+        
+    }
 }
