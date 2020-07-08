@@ -77,14 +77,14 @@
                 </div>
               </div>
               </div>
-              {{-- <div class="col-md-3">
+              <div class="col-md-3">
               <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
                 <div class="card-header">Jumlah Mitra {{\Auth::user()->name}} </div>
                 <div class="card-body">
                   <h5>{{$jumlahmitra}} </h5>
                 </div>
               </div>
-              </div> --}}
+              </div>
               @endif
              
               <div class="col-md-3">
@@ -103,7 +103,7 @@
                   </div>
                 </div>
                 </div>     
-              {{-- @if (\Auth::user()->usertype == 'superadmin')
+              @if (\Auth::user()->usertype == 'superadmin')
               <div class="col-md-3">
                 <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                   <div class="card-header">Revenue {{\Auth::user()->name}} </div>
@@ -120,7 +120,7 @@
                     </div>
                   </div>
                   </div>
-                @endif --}}
+                @endif
       
               <div class="card-body">
                 <div class="form-group mb-3">
