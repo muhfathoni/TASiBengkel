@@ -53,6 +53,7 @@ Status Barang
         <div class="table-responsive">
           <table class="display nowrap" id='statusbarang'>
             <thead class=" text-primary">
+              <th>No Pembelian</th>
               <th>Nama Pembeli</th>
               <th>Nama Barang</th>
               <th>Gambar</th>
@@ -63,6 +64,7 @@ Status Barang
             <tbody>
               @foreach ($pembelianbarang as $row)
               <tr>
+                <td>120216{{$row->id}}</td>
                 <td>{{ $row->customer->name }}</td>
                 <td>{{ $row->dataproduk->nama }}</td>
                 
