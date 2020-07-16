@@ -55,12 +55,12 @@ Daftar Booking | Mitra SiBengkel
 
               @endforeach
               {{-- tolong liatin nes gue gangerti buat input gambar --}}
-              @foreach ($Booking as $buktipembayaran)
+              @foreach ($Booking as $row)
                   
               <tr>
                 <td>
                   <div class="cart-img-product b-rad-4 o-f-hidden">
-                  <img src="{{url($buktipembayaran->bukti_pembayaran)}}">
+                  <img src="{{url($row->bukti_pembayaran)}}">
                 </div>
                 </td>
               </tr>
