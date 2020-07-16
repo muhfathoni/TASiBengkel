@@ -127,6 +127,7 @@ Route::get('syarat', 'syaratController@index');
 Route::get('syaratpembelian', 'syaratpembelianController@index');
 
 Route::post('uploadbukti/{id}', 'pembelianbarangController@pembayaran')->name('uploadbukti');
+Route::post('uploadbukti/{id}', 'BookingController@pembayaran')->name('pembayaranbooking');
 
 
 

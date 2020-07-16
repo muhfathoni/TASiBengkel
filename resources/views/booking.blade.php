@@ -71,15 +71,23 @@ Booking
 					<td>
 						Rp.{{$booking->namaservis->harga}}
 					</td>
+					@if(empty($booking->bukti_pembayaran))
 					<td>
-						<form action="/" method="POST" enctype="multipart/form-data">
+						<form action="{{route('pembayaranbooking',$booking->id)}}" method="POST" enctype="multipart/form-data">
+							{{csrf_field()}}
 							<input type="file" name ='buktipembayaran' class="form-control" id="customFile">
-
-					</td>
-					<td>
-							<button type="submit" class="btn btn-primary">Save</button>
+						</td>
+						<td>
+							<button type="submit" class="btn btn-primary">Upload</button>
 						</form>
 					</td>
+					@else
+					<td>
+						<div class="cart-img-product b-rad-4 o-f-hidden">
+						<img src="{{url($booking->bukti_pembayaran)}}">
+					</div>
+					</td>
+					@endif
 					<td>
 						<button class="btn btn-sm btn-danger hapus-barang" type="button" id="{{$booking->id}}" onclick="deleteFunction({{$booking->id}})">
 							<i class="fa fa-trash" aria-hidden="true"></i> Hapus

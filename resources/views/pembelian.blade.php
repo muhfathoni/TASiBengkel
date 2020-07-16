@@ -25,6 +25,9 @@ History Pembelian Barang
 					</tr>
 					<tr>
 						<th>
+							No Pembelian
+						</th>
+						<th>
 							Tanggal Pembelian
 						</th>
 						<th>
@@ -50,6 +53,9 @@ History Pembelian Barang
 					@foreach ($pembelian as $pembelians)
 					<tr>
 						<td>
+							120216{{$pembelians->id}}
+						</td>
+						<td>
 							{{$pembelians->created_at->format('d M y')}}
 						</td>
 						<td>
@@ -73,8 +79,9 @@ History Pembelian Barang
 						</td>
 						@else
 						<td>
-							<img src="{{url($pembelians->bukti_pembayaran)}}">
-								{{-- <img src="/storage/img_bukti/1594809108.png"> --}}
+							<div class="cart-img-product b-rad-4 o-f-hidden">
+								<img src="{{url($pembelians->bukti_pembayaran)}}">
+							</div>
 						</td>
 						@endif
 						<td>

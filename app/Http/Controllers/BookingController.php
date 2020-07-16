@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 use App\servis;
 use App\addtocart;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
@@ -16,8 +17,7 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $booking = Booking::where('userid',Auth::user()->id)->get();
         $bengkels = User::where('usertype', 'admin')->get();
 
@@ -31,33 +31,24 @@ class BookingController extends Controller
         return view ('booking', compact('notif', 'booking', 'bengkels'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    public function pembayaran(Request $request, $id){
+
+        $filename = $request->file('buktipembayaran')->storeAs('img_bukti', Carbon::now()->timestamp.'.'.$request->file('buktipembayaran')->extension());
+
+        // dd($filename)
+
+        $namafoto = '/storage/'. $filename;
+        // $namafoto = $filename;
+
+        $buktipembayaran = Booking::where('id',$request->id)->update(['bukti_pembayaran' => $namafoto]); 
+
+        return redirect('booking')->with('success');
+        
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
 
-        // dd($request->toArray());
-
-    //   $this->validate($request, [
-    //     'id_bengkel'           => 'required',
-    //     'namaService'          => 'required',
-    //     'jadwalService'        => 'required', 
-    //     'jamService'           => 'required'
-    // ]);
+    public function store(Request $request){
 
       $booking = new Booking();
 
@@ -72,53 +63,13 @@ class BookingController extends Controller
       return redirect()->route('bookingservice')->with('success', 'Booking berhasil');
   }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function show(booking $booking)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(booking $booking)
-    {
-        //
-    }
+  public function destroy($id){
+    $booking = Booking::with('tb_booking')->where('id',$id)->delete();
+    return redirect('/booking')->with('status', 'Data Berhasil DiHapus');
+}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, booking $booking)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-     $booking = Booking::with('tb_booking')->where('id',$id)->delete();
-     return redirect('/booking')->with('status', 'Data Berhasil DiHapus');
- }
-
- public function namaservis($id){
+public function namaservis($id){
     $servis = servis::where('id_bengkel', $id)->get();
 
     $html = '';
