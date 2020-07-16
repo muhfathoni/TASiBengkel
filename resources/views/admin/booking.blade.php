@@ -31,14 +31,14 @@ Daftar Booking | Mitra SiBengkel
 
 
               <tr>
-                <td>{{ $row->id }}</td>
+                <td>120216{{ $row->id }}</td>
                 <td>{{ $row->namabengkel->name }}</td>
                 <td>{{ $row->namaservis->nama_servis }} </td>
                 <td>{{ $row->jadwal }}</td>
                 <td>
                   @if ($row->revenue > 0)
-                      {{-- Rp{{number_format($row->revenue,2,',','.')}} --}}
-                 {{$row->revenue}} 
+                  {{-- Rp{{number_format($row->revenue,2,',','.')}} --}}
+                  {{$row->revenue}} 
                   @else
                   <div class="input-group mb-3">
                     <input type="number" class="form-control" placeholder="Contoh: 100000" aria-label="Income" aria-describedby="basic-addon2" id="{{ 'revenue'.$row->id }}">
@@ -47,74 +47,69 @@ Daftar Booking | Mitra SiBengkel
                     </div>
                   </div>
                   @endif
-                 
+
                   {{-- <input type="text" name="income" class="form-control">
                   <a href="#" class="btn btn-success">Add</a> --}}
                 </td>
-              </tr>
-
-              @endforeach
-              {{-- tolong liatin nes gue gangerti buat input gambar --}}
-              @foreach ($Booking as $row)
-                  
+              </tr>     
               <tr>
                 <td>
                   <div class="cart-img-product b-rad-4 o-f-hidden">
-                  <img src="{{url($row->bukti_pembayaran)}}">
-                </div>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-      </div>
+                    <img src="{{url($row->bukti_pembayaran)}}">
+                 </div>
+               </td>
+             </tr>
+             @endforeach
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </div>
+ </div>
+ {{-- <div class="col-md-12">
+  <div class="card card-plain">
+    <div class="card-header">
+      <h4 class="card-title"> Pesanan Barang</h4>
+      <p class="category"> Untuk Jenis Barang / Request</p>
     </div>
-  </div>
-  {{-- <div class="col-md-12">
-    <div class="card card-plain">
-      <div class="card-header">
-        <h4 class="card-title"> Pesanan Barang</h4>
-        <p class="category"> Untuk Jenis Barang / Request</p>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class=" text-primary">
+            <th>
+              Nama
+            </th>
+            <th>
+              No HP
+            </th>
+            <th>
+              Nama Barang
+            </th>
+            <th>
+              Tanggal Pengambilan
+            </th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Toni
+              </td>
+              <td>
+                082298099134
+              </td>
+              <td>
+                Knalpot
+              </td>
+              <td>
+                10 Maret 2020
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table">
-            <thead class=" text-primary">
-              <th>
-                Nama
-              </th>
-              <th>
-                No HP
-              </th>
-              <th>
-                Nama Barang
-              </th>
-              <th>
-                Tanggal Pengambilan
-              </th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  Toni
-                </td>
-                <td>
-                  082298099134
-                </td>
-                <td>
-                  Knalpot
-                </td>
-                <td>
-                  10 Maret 2020
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div> --}}
-    </div>
+    </div> --}}
   </div>
+</div>
 </div>
 
 @endsection
@@ -131,7 +126,7 @@ Daftar Booking | Mitra SiBengkel
       var id_booking = $(this).attr('id');
       $.ajaxSetup({
         headers: {
-        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+          'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
 
         }   
       })
@@ -142,8 +137,8 @@ Daftar Booking | Mitra SiBengkel
       });
     });
 
-  
-});
+
+  });
 
 </script>
 

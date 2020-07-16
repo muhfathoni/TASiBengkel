@@ -92,6 +92,9 @@ class DashboardController extends Controller
             $booking = Booking::all();
 
         }
+
+        // dd($booking);
+
         return view('admin.booking')->with('tb_booking',$booking);
     }
 

@@ -49,7 +49,5 @@ class pembelianbarangController extends Controller
 		$buktipembayaran = pembelianbarang::where('id',$request->id)->update(['bukti_pembayaran' => $namafoto]); 
 
 		return redirect('pembelian')->with('success');
-		
-
 	}
 }
