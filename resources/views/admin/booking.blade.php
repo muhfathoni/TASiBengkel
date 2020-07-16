@@ -23,6 +23,7 @@ Daftar Booking | Mitra SiBengkel
               <th>Nama</th>
               <th>Jenis Service</th>
               <th>Jadwal Booking</th>
+              <th>Bukti DP</th>
               <th>Income</th>
             </thead>
             <tbody>
@@ -52,6 +53,17 @@ Daftar Booking | Mitra SiBengkel
                 </td>
               </tr>
 
+              @endforeach
+              {{-- tolong liatin nes gue gangerti buat input gambar --}}
+              @foreach ($Booking as $buktipembayaran)
+                  
+              <tr>
+                <td>
+                  <div class="cart-img-product b-rad-4 o-f-hidden">
+                  <img src="{{url($buktipembayaran->bukti_pembayaran)}}">
+                </div>
+                </td>
+              </tr>
               @endforeach
             </tbody>
           </table>
