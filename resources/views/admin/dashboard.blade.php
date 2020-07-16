@@ -128,18 +128,21 @@ Dashboard | Mitra SiBengkel
 
 <div class="card-body">
   <div class="form-group mb-3">
-    <select id="filter-year" class="form-control">
+    <select id="filter-year" class="form-control" style="width:50%">
       <option value="">Semua</option>
       @foreach ($tahun as $key => $value)
       <option value="{{$value}}">{{$value}}</option>
       @endforeach
     </select>
   </div>
-  <div id="chart_div" style="width:100%;height:200px;"></div>
+  <div id="chart_div" style="width:50%;height:300px;"></div>
 </div>
 </div>
 
 </div>
+
+
+
 
 <!--Div that will hold the dashboard-->
 {{-- <div id="dashboard_div">

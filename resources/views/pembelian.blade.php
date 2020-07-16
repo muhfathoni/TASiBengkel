@@ -73,8 +73,8 @@ History Pembelian Barang
 						</td>
 						@else
 						<td>
-							<!-- <img src="{{url($pembelians->bukti_pembayaran)}}"> -->
-							<img src="/storage/img_bukti/1594809108.png">
+							<img src="{{url($pembelians->bukti_pembayaran)}}">
+								{{-- <img src="/storage/img_bukti/1594809108.png"> --}}
 						</td>
 						@endif
 						<td>

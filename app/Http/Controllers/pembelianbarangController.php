@@ -43,12 +43,13 @@ class pembelianbarangController extends Controller
 
 		// dd($filename)
 
-		// $namafoto = '/storage/'. $filename;
-		$namafoto = $filename;
+		$namafoto = '/storage/'. $filename;
+		// $namafoto = $filename;
 
 		$buktipembayaran = pembelianbarang::where('id',$request->id)->update(['bukti_pembayaran' => $namafoto]); 
 
-		return redirect()->route('pembelian');
+		return redirect('pembelian')->with('success');
+		
 
 	}
 }
