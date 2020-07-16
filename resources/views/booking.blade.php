@@ -40,7 +40,8 @@ Booking
 		<div class="container"> 
 			<table class="">
 				<tr>
-					<th></th>
+					<th>Id Booking</th>
+					<th>Tanggal Booking</th>
 					<th>Booked Service</th>
 					<th>Nama Bengkel</th>
 					<th>Jadwal</th>
@@ -53,6 +54,9 @@ Booking
 				@foreach ($booking as $booking)
 
 				<tr>
+					<td>
+						120216{{$booking->id}}
+					</td>
 					<td>
 						{{$booking->created_at->format('d M y')}}
 					</td>
