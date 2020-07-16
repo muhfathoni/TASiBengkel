@@ -21,11 +21,23 @@ History Pembelian Barang
 			<div class="container"> 
 				<table class="table">
 					<tr>
+						<td colspan="7">Silahkan cek tata cara pembayaran <a href="syaratpembelian">disini</a></td>
+					</tr>
+					<tr>
+						<th>
+							Tanggal Pembelian
+						</th>
 						<th>
 							Nama barang
 						</th>
 						<th>
 							Gambar
+						</th>
+						<th>
+							Bukti Pembayaran
+						</th>
+						<th>
+							
 						</th>
 						<th>
 							Status
@@ -38,14 +50,33 @@ History Pembelian Barang
 					@foreach ($pembelian as $pembelians)
 					<tr>
 						<td>
+							{{$pembelians->created_at->format('d M y')}}
+						</td>
+						<td>
 							{{$pembelians->dataproduk->nama}}
 						</td>
 						<td>
 							<div class="col-lg-6 col-md-6 text-center">
 								<img src="{{$pembelians->dataproduk->gambar_b}}" class="img-fluid">
 							</div>
-
 						</td>
+
+						@if(empty($pembelians->bukti_pembayaran))
+						<td>
+							<form action="{{route('uploadbukti',$pembelians->id)}}" method="POST" enctype="multipart/form-data">
+								{{csrf_field()}}
+								<input type="file" name ='buktipembayaran' class="form-control" id="customFile">
+							</td>
+							<td>
+								<button type="submit" class="btn btn-primary">Upload</button>
+							</form>
+						</td>
+						@else
+						<td>
+							<!-- <img src="{{url($pembelians->bukti_pembayaran)}}"> -->
+							<img src="/storage/img_bukti/1594809108.png">
+						</td>
+						@endif
 						<td>
 							{{$pembelians->status}}
 						</td>

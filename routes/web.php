@@ -24,7 +24,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'Auth\LoginController@redirectTo');
 
 Auth::routes();
 
@@ -123,15 +123,12 @@ Route::post('alamat/insert', 'alamatController@store')->name('insertAlamat');
 
 Route::get('profile', 'alamatController@profile');
 
+Route::get('syarat', 'syaratController@index');
+Route::get('syaratpembelian', 'syaratpembelianController@index');
+
+Route::post('uploadbukti/{id}', 'pembelianbarangController@pembayaran')->name('uploadbukti');
 
 
-// Route::get('barangdibayar', function(){
-//  return view ('barangdibayar');
-// });
-
-// Route::get('pembelianbarang', function(){
-//     return view ('pembelianbarang');
-// });
 
 // Route::get('jenis', function(){
 //     return view ('jenis');

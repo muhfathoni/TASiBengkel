@@ -36,21 +36,26 @@ Booking
 @endif -->
 
 <center>
-	<div class="table-responsive">
+	<div class="">
 		<div class="container"> 
-			<table class="table">
+			<table class="">
 				<tr>
+					<th></th>
 					<th>Booked Service</th>
 					<th>Nama Bengkel</th>
 					<th>Jadwal</th>
 					<th>Jam</th>
 					<th>Harga</th>
+					<th>Bukti Pembayaran</th>
 					<th>Action</th>
 				</tr>
 
 				@foreach ($booking as $booking)
 
 				<tr>
+					<td>
+						{{$booking->created_at->format('d M y')}}
+					</td>
 					<td>
 						{{$booking->namaservis->nama_servis}}
 					</td>
@@ -64,7 +69,16 @@ Booking
 						{{$booking->jam}}
 					</td>
 					<td>
-						{{$booking->harga}}
+						Rp.{{$booking->namaservis->harga}}
+					</td>
+					<td>
+						<form action="/" method="POST" enctype="multipart/form-data">
+							<input type="file" name ='buktipembayaran' class="form-control" id="customFile">
+
+					</td>
+					<td>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</form>
 					</td>
 					<td>
 						<button class="btn btn-sm btn-danger hapus-barang" type="button" id="{{$booking->id}}" onclick="deleteFunction({{$booking->id}})">
@@ -72,8 +86,10 @@ Booking
 						</button>
 					</td>
 				</tr>
-
 				@endforeach
+				<tr>
+					<td colspan="9">Silahkan cek syarat dan ketentuan Booking Service <a href="/syarat">disini</a></td>
+				</tr>
 			</table>
 		</div>
 	</div>

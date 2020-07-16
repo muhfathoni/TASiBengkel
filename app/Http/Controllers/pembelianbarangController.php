@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\pembelianbarang;
 use App\addtocart;
 use Auth;
+use Carbon\Carbon;
 
 class pembelianbarangController extends Controller
 {
@@ -30,10 +31,24 @@ class pembelianbarangController extends Controller
 		$pembelian->totalHarga = $request->totalHarga;
 		$pembelian->produk_id = $request->produk_id;
 		
-
 		$pembelian->save();
 		$checkout->delete();
 
 		return redirect()->route('alamat');
+	}
+
+	public function pembayaran(Request $request, $id){
+
+		$filename = $request->file('buktipembayaran')->storeAs('img_bukti', Carbon::now()->timestamp.'.'.$request->file('buktipembayaran')->extension());
+
+		// dd($filename)
+
+		// $namafoto = '/storage/'. $filename;
+		$namafoto = $filename;
+
+		$buktipembayaran = pembelianbarang::where('id',$request->id)->update(['bukti_pembayaran' => $namafoto]); 
+
+		return redirect()->route('pembelian');
+
 	}
 }

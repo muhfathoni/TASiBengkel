@@ -157,7 +157,7 @@ class DashboardController extends Controller
             $booking = Booking::where('id',$request->id_booking)->first();
             $user = User::where('id', Auth::user()->id)->orWhere('usertype', 'superadmin')->get();
 
-            \Notification::send($user, new notif($booking));
+            Notification::send($user, new notif($booking));
             
             return true;
          }

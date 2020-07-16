@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class pembelianbarang extends Model
 {
     protected $table = 'tb_pembelianbarang';
-    protected $fillable = ['customer_id', 'produk_id', 'status', 'totalHarga'];
+    protected $fillable = ['customer_id', 'produk_id', 'status', 'totalHarga', 'created_at', 'bukti_pembayaran'];
 
     public function customer(){
     	return $this->belongsTo('App\User', 'customer_id');

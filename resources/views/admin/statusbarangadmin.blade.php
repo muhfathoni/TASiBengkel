@@ -56,9 +56,9 @@ Status Barang
               <th>Nama Pembeli</th>
               <th>Nama Barang</th>
               <th>Gambar</th>
+              <th>Bukti Pembayaran</th>
               <th>Harga</th>
               <th>Status</th>
-              <th>Alamat</th>
             </thead>
             <tbody>
               @foreach ($pembelianbarang as $row)
@@ -70,6 +70,9 @@ Status Barang
                   <div class="col-md-6 col-lg-6 text-center">
                    <img src="{{url($row->dataproduk->gambar_b)}}" class="img-fluid">
                  </div>
+               </td>
+               <td>
+                  <img src="{{url($row->bukti_pembayaran)}}" class="img-fluid">
                </td>
 
                <td>{!!$row->totalHarga!!}</td>

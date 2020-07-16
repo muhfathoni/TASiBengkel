@@ -93,7 +93,11 @@ Cart
 								</button>
 							</div></td>
 						</tr>
-
+						<tr>
+							<td colspan="5">
+								Silahkan cek histori pembelian ada <a href="/pembelian">disini</a>
+							</td>
+						</tr>
 					</table>
 				</div>
 			</div>
@@ -243,7 +247,7 @@ Cart
 						buttons: true,
 					})
 					.then((deleted)=>{
-						window.location.replace("/alamat");
+						window.location.replace("/pembelian");
 					});
 				})
 			} else {
