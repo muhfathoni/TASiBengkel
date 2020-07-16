@@ -44,7 +44,7 @@ class pembelianbarangController extends Controller
 		// dd($filename)
 
 		$namafoto = '/storage/'. $filename;
-		// $namafoto = $filename;
+	
 
 		$buktipembayaran = pembelianbarang::where('id',$request->id)->update(['bukti_pembayaran' => $namafoto]); 
 
